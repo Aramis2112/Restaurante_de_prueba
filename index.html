@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Digital Restaurante</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>Menú Digital</h1>
-        <p>Lo mejor de nuestra cocina a tu mesa</p>
-    </header>
+    <header class="hero">
+    <div class="contenido-hero">
+        <h1>Cosa Rica</h1>
+        <p>Las mejores hamburguesas, pizzas y tacos de la ciudad.</p>
+        <a href="#menu-container" class="btn-llamada">Ver Menú</a>
+    </div>
+</header>
 
     <section class="controles">
         <input type="text" id="buscador" placeholder="🔍 ¿Qué se te antoja hoy? (ej. Hamburguesa, Jugo...)">
 
         <div class="filtros">
-            <button class="btn-filtro active" onclick="filtrar('todo')">Todos</button>
-            <button class="btn-filtro" onclick="filtrar('hamburguesas')">Hamburguesas</button>
-            <button class="btn-filtro" onclick="filtrar('pizzas')">Pizzas</button>
-            <button class="btn-filtro" onclick="filtrar('tacos')">Tacos</button>
-            <button class="btn-filtro" onclick="filtrar('sushi')">Sushi</button>
-            <button class="btn-filtro" onclick="filtrar('bebidas')">Bebidas</button>
+            <button class="btn-filtro active" onclick="filtrar('todo')"><i class="fas fa-utensils"></i> Todos</button>
+            <button class="btn-filtro" onclick="filtrar('hamburguesas')"><i class="fas fa-hamburger"></i> Burgers</button>
+            <button class="btn-filtro" onclick="filtrar('pizzas')"><i class="fas fa-pizza-slice"></i> Pizzas</button>
+            <button class="btn-filtro" onclick="filtrar('tacos')"><i class="fas fa-pepper-hot"></i> Tacos</button>
+            <button class="btn-filtro" onclick="filtrar('sushi')"><i class="fas fa-fish"></i> Sushi</button>
+            <button class="btn-filtro" onclick="filtrar('bebidas')"><i class="fas fa-cocktail"></i> Bebidas</button>
         </div>
     </section>
 
@@ -157,9 +161,13 @@
     </div>
 
     <footer>
-        <p>© 2024 Restaurante App - Creado por ti</p>
+        <p>© 2025 Restaurante App - Creado por ti</p>
     </footer>
 
     <script src="script.js"></script>
+
+    <a href="https://wa.me/56912345678" class="btn-wsp" target="_blank">
+    <img src="img/wsp.png" alt="Pedir por WhatsApp">
+</a>
 </body>
 </html>

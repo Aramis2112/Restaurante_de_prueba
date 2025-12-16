@@ -138,3 +138,69 @@ footer {
     color: #888;
     font-size: 0.8rem;
 }
+
+/* Estilo del Hero Section */
+.hero {
+    height: 60vh; /* Ocupa el 60% de la altura de la pantalla */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.contenido-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.contenido-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn-llamada {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #ff6b6b;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.btn-llamada:hover {
+    transform: scale(1.1);
+    background-color: #ff4757;
+}
+
+.btn-wsp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 100; /* Para que siempre esté encima de todo */
+    transition: transform 0.3s;
+}
+
+.btn-wsp:hover {
+    transform: translateY(-5px);
+}
+
+.btn-wsp img {
+    width: 35px;
+    height: 35px;
+}
