@@ -31,6 +31,8 @@ async function cargarMenu() {
             categoria.items.forEach(plato => {
                 const platoHTML = `
                     <div class="plato-card">
+                        <img src="img/${plato.imagen}" alt="${plato.nombre}" class="plato-foto">
+                        
                         <div class="info">
                             <h3>${plato.nombre}</h3>
                             <p class="descripcion">${plato.descripcion}</p>

@@ -71,6 +71,14 @@ header h1 {
     color: #2d3436;
 }
 
+.plato-foto {
+    width: 100%;             /* Que ocupe todo el ancho de la tarjeta */
+    height: 200px;           /* Altura fija para que todos se vean iguales */
+    object-fit: cover;       /* Recorta la imagen para que no se deforme/estire */
+    border-radius: 8px;      /* Bordes redondeados */
+    margin-bottom: 10px;     /* Espacio entre la foto y el texto */
+}
+
 .descripcion {
     font-size: 0.9rem;
     color: #636e72;
