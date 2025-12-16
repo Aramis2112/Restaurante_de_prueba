@@ -9,3 +9,7 @@ git add .
 git commit -m "Corregir colores de interfaz"
 
 git push
+
+git add .
+git commit -m "actualizar icono favicon a la pagina"
+git push

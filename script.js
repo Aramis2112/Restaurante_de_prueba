@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Definimos la función global que usa el HTML
     window.filtrar = function(categoria) {
         
+        document.getElementById('inicio-menu').scrollIntoView({ behavior: 'smooth' });
         // Estética de botones (lo repetimos para asegurar que funcione con el onclick del HTML)
         botonesFiltro.forEach(btn => {
             // Un pequeño truco para saber cuál botón es el actual basado en el texto o un atributo
@@ -77,3 +78,76 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+/* --- ANIMACIÓN SCROLL REVEAL --- */
+    
+    // 1. Seleccionamos qué elementos queremos animar
+    // En este caso: todos los productos y las columnas del footer
+    const elementosAnimar = document.querySelectorAll('.producto, .footer-col');
+
+    // 2. Configuramos al "Vigilante" (Observer)
+    const vigilante = new IntersectionObserver((entradas) => {
+        entradas.forEach(entrada => {
+            // Si el elemento entra en pantalla...
+            if(entrada.isIntersecting) {
+                // ...le ponemos la clase 'active' para que suba y aparezca
+                entrada.target.classList.add('active');
+                
+                // (Opcional) Dejamos de vigilarlo para que no se anime 
+                // otra vez si subes y bajas rápido. Ahorra recursos.
+                vigilante.unobserve(entrada.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Se activa cuando al menos el 10% del elemento es visible
+    });
+
+    // 3. Le ponemos la clase base 'reveal' a todos y empezamos a vigilar
+    elementosAnimar.forEach(el => {
+        el.classList.add('reveal'); // Añade la invisibilidad inicial
+        vigilante.observe(el);      // Activa al vigilante
+    });
+
+/* --- LÓGICA DEL MODAL (POPUP) --- */
+    
+    const modal = document.getElementById('modal-producto');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitulo = document.getElementById('modal-titulo');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalPrecio = document.getElementById('modal-precio');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // 1. Abrir Modal al hacer clic en un producto
+    // Nota: Como usamos querySelectorAll('.producto') antes, podemos reutilizar esa variable o crearla de nuevo
+    const listaProductos = document.querySelectorAll('.producto');
+
+    listaProductos.forEach(prod => {
+        prod.addEventListener('click', () => {
+            // Capturamos los datos del producto clickeado
+            const imagenSrc = prod.querySelector('img').src;
+            const titulo = prod.querySelector('h3').textContent;
+            const descripcion = prod.querySelector('p').textContent;
+            const precio = prod.querySelector('.precio').textContent;
+
+            // Rellenamos el modal con esos datos
+            modalImg.src = imagenSrc;
+            modalTitulo.textContent = titulo;
+            modalDesc.textContent = descripcion;
+            modalPrecio.textContent = precio;
+
+            // Mostramos el modal (cambiamos display: none a flex)
+            modal.style.display = 'flex';
+        });
+    });
+
+    // 2. Cerrar Modal con la X
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // 3. Cerrar Modal si haces clic fuera de la tarjeta (en el fondo oscuro)
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });

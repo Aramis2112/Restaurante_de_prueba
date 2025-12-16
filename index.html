@@ -15,11 +15,11 @@
     <div class="contenido-hero">
         <h1>Cosa Rica</h1>
         <p>Las mejores hamburguesas, pizzas y tacos de la ciudad.</p>
-        <a href="#menu-container" class="btn-llamada">Ver Menú</a>
+        <a href="#inicio-menu" class="btn-llamada">Ver Menú</a>
     </div>
 </header>
 
-    <section class="controles">
+    <section class="controles" id="inicio-menu">
         <input type="text" id="buscador" placeholder="🔍 ¿Qué se te antoja hoy? (ej. Hamburguesa, Jugo...)">
 
         <div class="filtros">
@@ -161,10 +161,52 @@
 
     </div>
 
-    <footer>
-        <p>© 2025 Restaurante App - Creado por ti</p>
-    </footer>
+    <footer class="footer-mega">
+    <div class="footer-container">
+        
+        <div class="footer-col">
+            <h3>Sobre Nosotros</h3>
+            <p>Pasión por la cocina y los mejores ingredientes. Llevamos el sabor auténtico directo a tu mesa con recetas únicas y frescas.</p>
+            <div class="redes-sociales">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
 
+        <div class="footer-col">
+            <h3>Nuestros Horarios</h3>
+            <ul>
+                <li><strong>Lun - Vie:</strong> 12:00 pm - 10:00 pm</li>
+                <li><strong>Sábados:</strong> 1:00 pm - 11:00 pm</li>
+                <li><strong>Domingos:</strong> Cerrado</li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Contáctanos</h3>
+            <p><i class="fas fa-map-marker-alt"></i> San donato 3608, Alto Hospicio</p>
+            <p><i class="fas fa-phone"></i> +56 9 1234 5678</p>
+            <p><i class="fas fa-envelope"></i> cosarica@gmail.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Restaurante Sabor. Todos los derechos reservados.</p>
+    </div>
+</footer>
+    <div id="modal-producto" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <img id="modal-img" src="" alt="Imagen Grande">
+        <h2 id="modal-titulo">Nombre del Plato</h2>
+        <p id="modal-desc">Descripción del plato</p>
+        <span id="modal-precio" class="precio-grande">$0.000</span>
+        <br><br>
+        <button class="btn-pedir-modal">¡Lo quiero!</button>
+    </div>
+</div>
     <script src="script.js"></script>
 
     <a href="https://wa.me/56912345678" class="btn-wsp" target="_blank">

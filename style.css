@@ -1,5 +1,6 @@
 /* === REINICIO BÁSICO === */
 * {
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -60,16 +61,21 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .btn-filtro:hover {
     background-color: #e0e0e0;
+    transform: scale(1.1);
+    z-index: 10;
 }
 
 .btn-filtro.active {
     background-color: #428f9c;
     color: white;
-    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
 }
 
 /* === MENÚ GRID (Tarjeta de Producto) === */
@@ -80,6 +86,8 @@ header {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 100vh;
+    align-content: start;
 }
 
 .producto {
@@ -89,6 +97,7 @@ header {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s;
     display: block; /* Necesario para el JS */
+    cursor: pointer;
 }
 
 .producto:hover {
@@ -141,7 +150,7 @@ footer {
 
 /* Estilo del Hero Section */
 .hero {
-    height: 60vh; /* Ocupa el 60% de la altura de la pantalla */
+    height: 100vh; /* Ocupa el 60% de la altura de la pantalla */
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-hero.jpg');
     background-size: cover;
     background-position: center;
@@ -203,4 +212,202 @@ footer {
 .btn-wsp img {
     width: 35px;
     height: 35px;
+}
+
+/* === ESTILOS DEL MEGA FOOTER === */
+.footer-mega {
+    background-color: #222; /* Fondo oscuro */
+    color: #eee;            /* Texto gris claro */
+    padding-top: 60px;
+    margin-top: 50px;       /* Separación del menú */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Esto crea columnas automáticas que se ajustan al celular y PC */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding: 0 20px 40px 20px;
+}
+
+.footer-col h3 {
+    color: #428f9c; /* Tu color de marca */
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Pequeña línea decorativa bajo el título */
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 3px;
+    background-color: #428f9c;
+}
+
+.footer-col p {
+    color: #bbb;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+    color: #bbb;
+}
+
+/* Iconos de redes sociales */
+.redes-sociales a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    color: white;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.redes-sociales a:hover {
+    background-color: #428f9c;
+    transform: translateY(-3px);
+}
+
+/* Barra inferior */
+.footer-bottom {
+    background-color: #111; /* Un poco más oscuro */
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #333;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* === ANIMACIONES DE ENTRADA (Scroll Reveal) === */
+
+/* Estado inicial: Invisible y desplazado hacia abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px); 
+    transition: all 0.8s ease-out; /* Tarda 0.8 segundos en subir suavemente */
+}
+
+/* Estado final: Visible y en su sitio (JS agregará esta clase) */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === ESTILOS DE LA VENTANA MODAL === */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000; /* Encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Efecto borroso elegante en el fondo */
+}
+
+.modal-content {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.85)), url('img/fondo-modal.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #f0f0f0;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: none;
+    animation: zoomIn 0.3s ease; /* Animación de entrada */
+    border: 1px solid rgba(255,255,255,0.1)
+}
+/* Aseguramos que los títulos y textos dentro del modal sean claros */
+.modal-content h2 {
+    color: white;
+    margin-top: 10px;
+}
+
+.modal-content p {
+    color: #ccc; /* Gris clarito para la descripción */
+}
+
+/* Animación de Zoom */
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    color: #428f9c;
+}
+
+.precio-grande {
+    font-size: 1.5rem;
+    color: #428f9c;
+    font-weight: bold;
+    display: block;
+    margin: 15px 0;
+}
+
+.btn-pedir-modal {
+    padding: 12px 30px;
+    background-color: #428f9c; /* Verde WhatsApp */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-pedir-modal:hover {
+    transform: scale(1.05);
+}
+
+/* === CORRECCIÓN DEL HOVER === */
+/* Forzamos la elevación cuando el producto ya apareció (tiene la clase .active) */
+.producto.active:hover {
+    transform: translateY(-10px); /* Vuelve a subir 10px */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Recupera la sombra bonita */
 }
