@@ -1,55 +1,79 @@
+// Esperamos a que cargue el DOM
 document.addEventListener('DOMContentLoaded', () => {
-    // Llamamos a la función principal
-    cargarMenu();
-});
+    
+    const buscador = document.getElementById('buscador');
+    const botonesFiltro = document.querySelectorAll('.btn-filtro');
+    const productos = document.querySelectorAll('.producto');
 
-async function cargarMenu() {
-    try {
-        // 1. Petición para obtener el JSON
-        const respuesta = await fetch('data.json');
-        const datos = await respuesta.json();
-
-        // 2. Cambiamos el nombre del restaurante en el título
-        document.getElementById('restaurant-name').textContent = datos.restaurante;
-
-        // 3. Generamos el HTML para cada categoría
-        const contenedor = document.getElementById('menu-container');
-        
-        datos.menu.forEach(categoria => {
-            // Creamos una sección para la categoría (ej: Entradas)
-            const seccion = document.createElement('section');
-            seccion.classList.add('categoria');
+    // --- FUNCIÓN 1: FILTRAR POR CATEGORÍA ---
+    // Agregamos evento click a cada botón
+    botonesFiltro.forEach(btn => {
+        btn.addEventListener('click', () => {
             
-            // Título de la categoría
-            seccion.innerHTML = `<h2>${categoria.categoria}</h2>`;
+            // 1. Remover clase 'active' de todos los botones
+            botonesFiltro.forEach(b => b.classList.remove('active'));
+            // 2. Agregar clase 'active' al botón clicado
+            btn.classList.add('active');
 
-            // Contenedor de los platos de esa categoría
-            const listaPlatos = document.createElement('div');
-            listaPlatos.classList.add('lista-platos');
+            // 3. Obtener la categoría seleccionada (usando el texto dentro de onclick en HTML no es necesario,
+            // pero aquí lo haremos capturando el evento para ser más limpios, 
+            // aunque el onclick del HTML llama a filtrar(), haremos que funcione con la función de abajo).
+            // NOTA: Como en el HTML puse onclick="filtrar()", vamos a definir esa función globalmente.
+        });
+    });
 
-            // Recorremos los items (platos)
-            categoria.items.forEach(plato => {
-                const platoHTML = `
-                    <div class="plato-card">
-                        <img src="img/${plato.imagen}" alt="${plato.nombre}" class="plato-foto">
-                        
-                        <div class="info">
-                            <h3>${plato.nombre}</h3>
-                            <p class="descripcion">${plato.descripcion}</p>
-                            <p class="precio">$${plato.precio.toLocaleString('es-CL')}</p>
-                        </div>
-                    </div>
-                `;
-                listaPlatos.innerHTML += platoHTML;
-            });
-
-            // Agregamos todo al contenedor principal
-            seccion.appendChild(listaPlatos);
-            contenedor.appendChild(seccion);
+    // Definimos la función global que usa el HTML
+    window.filtrar = function(categoria) {
+        
+        // Estética de botones (lo repetimos para asegurar que funcione con el onclick del HTML)
+        botonesFiltro.forEach(btn => {
+            // Un pequeño truco para saber cuál botón es el actual basado en el texto o un atributo
+            // Simplificaremos: marcamos activo al que coincida con el texto o lógica
+            // Pero para no complicar, usamos el click event de arriba solo para estilo visual
         });
 
-    } catch (error) {
-        console.error('Error cargando el menú:', error);
-        document.getElementById('menu-container').innerHTML = '<p>Error al cargar el menú.</p>';
-    }
-}
+        // Lógica de mostrar/ocultar productos
+        productos.forEach(prod => {
+            const catProducto = prod.getAttribute('data-categoria');
+            
+            if (categoria === 'todo' || catProducto === categoria) {
+                prod.classList.remove('hide');
+                // Animación suave opcional (fade in)
+                prod.style.opacity = '0';
+                setTimeout(() => prod.style.opacity = '1', 50);
+            } else {
+                prod.classList.add('hide');
+            }
+        });
+        
+        // Actualizar visualmente los botones (para que coincida con la función onclick)
+        botonesFiltro.forEach(btn => {
+            // Comparamos el onclick del botón con la categoría actual
+            if(btn.getAttribute('onclick').includes(categoria)) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    };
+
+    // --- FUNCIÓN 2: BUSCADOR EN TIEMPO REAL ---
+    buscador.addEventListener('keyup', (e) => {
+        const textoBusqueda = e.target.value.toLowerCase();
+
+        productos.forEach(prod => {
+            // Buscamos en el título (h3) y en la descripción (p)
+            const titulo = prod.querySelector('h3').textContent.toLowerCase();
+            const descripcion = prod.querySelector('p').textContent.toLowerCase();
+
+            // Si el texto está visible (no oculto por filtro) Y coincide con la búsqueda
+            // Nota: Si quieres que busque en TODO aunque esté filtrado, quita la validación de !hide
+            if (titulo.includes(textoBusqueda) || descripcion.includes(textoBusqueda)) {
+                prod.style.display = 'block';
+            } else {
+                prod.style.display = 'none';
+            }
+        });
+    });
+
+});

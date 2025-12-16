@@ -3,21 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Digital</title>
+    <title>Menú Digital Restaurante</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <h1 id="restaurant-name">Cargando...</h1>
+        <h1>Menú Digital</h1>
+        <p>Lo mejor de nuestra cocina a tu mesa</p>
     </header>
 
-    <main id="menu-container">
-        </main>
+    <section class="controles">
+        <input type="text" id="buscador" placeholder="🔍 ¿Qué se te antoja hoy? (ej. Hamburguesa, Jugo...)">
+
+        <div class="filtros">
+            <button class="btn-filtro active" onclick="filtrar('todo')">Todos</button>
+            <button class="btn-filtro" onclick="filtrar('hamburguesas')">Hamburguesas</button>
+            <button class="btn-filtro" onclick="filtrar('pizzas')">Pizzas</button>
+            <button class="btn-filtro" onclick="filtrar('tacos')">Tacos</button>
+            <button class="btn-filtro" onclick="filtrar('sushi')">Sushi</button>
+            <button class="btn-filtro" onclick="filtrar('bebidas')">Bebidas</button>
+        </div>
+    </section>
+
+    <div class="menu-grid" id="menu-container">
+        
+        <div class="producto" data-categoria="hamburguesas">
+            <img src="img/hamburguesa-clasica.jpg" alt="Hamburguesa Clásica">
+            <div class="info">
+                <h3>Hamburguesa Clásica</h3>
+                <p>Carne a la parrilla, queso y vegetales frescos.</p>
+                <span class="precio">$5.000</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="hamburguesas">
+            <img src="img/doble-bacon.jpg" alt="Doble Bacon">
+            <div class="info">
+                <h3>Doble Bacon Cheese</h3>
+                <p>Doble carne, doble queso cheddar y tocino crujiente.</p>
+                <span class="precio">$6.500</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="hamburguesas">
+            <img src="img/veggie-burger.jpg" alt="Veggie Burger">
+            <div class="info">
+                <h3>Veggie Burger</h3>
+                <p>Medallón de lentejas, lechuga, tomate y palta.</p>
+                <span class="precio">$5.800</span>
+            </div>
+        </div>
+
+        <div class="producto" data-categoria="pizzas">
+            <img src="img/pizza-pepperoni.jpg" alt="Pizza Pepperoni">
+            <div class="info">
+                <h3>Pizza Pepperoni</h3>
+                <p>Masa artesanal con salsa de tomate y extra pepperoni.</p>
+                <span class="precio">$8.500</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="pizzas">
+            <img src="img/pizza-bbq.jpg" alt="Pizza Pollo BBQ">
+            <div class="info">
+                <h3>Pizza Pollo BBQ</h3>
+                <p>Salsa barbacoa, pollo, cebolla morada y mozzarella.</p>
+                <span class="precio">$9.000</span>
+            </div>
+        </div>
+
+        <div class="producto" data-categoria="tacos">
+            <img src="img/tacos-pastor.jpg" alt="Tacos al Pastor">
+            <div class="info">
+                <h3>Tacos al Pastor</h3>
+                <p>3 unidades de cerdo adobado con piña y cilantro.</p>
+                <span class="precio">$4.000</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="tacos">
+            <img src="img/quesabirrias.jpg" alt="Quesabirrias">
+            <div class="info">
+                <h3>Quesabirrias</h3>
+                <p>Tacos de carne con queso fundido y consomé.</p>
+                <span class="precio">$5.500</span>
+            </div>
+        </div>
+
+        <div class="producto" data-categoria="sushi">
+            <img src="img/handroll-pollo.jpg" alt="Handroll Pollo">
+            <div class="info">
+                <h3>Handroll de Pollo</h3>
+                <p>Pollo, queso crema y cebollín frito en panko.</p>
+                <span class="precio">$3.500</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="sushi">
+            <img src="img/avocado-roll.jpg" alt="Avocado Roll">
+            <div class="info">
+                <h3>Avocado Roll</h3>
+                <p>Envuelto en palta, relleno de salmón y queso crema.</p>
+                <span class="precio">$4.200</span>
+            </div>
+        </div>
+
+        <div class="producto" data-categoria="bebidas">
+            <img src="img/jugo-fresa.jpg" alt="Jugo de Fresa">
+            <div class="info">
+                <h3>Jugo de Fresa</h3>
+                <p>Natural y refrescante, hecho al momento.</p>
+                <span class="precio">$2.000</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="bebidas">
+            <img src="img/jugo-pina.jpg" alt="Jugo de Piña">
+            <div class="info">
+                <h3>Jugo de Piña</h3>
+                <p>Dulce y tropical, recién exprimido.</p>
+                <span class="precio">$2.000</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="bebidas">
+            <img src="img/jugo-mango.jpg" alt="Jugo de Mango">
+            <div class="info">
+                <h3>Jugo de Mango</h3>
+                <p>Néctar suave de mango maduro.</p>
+                <span class="precio">$2.200</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="bebidas">
+            <img src="img/limonada-menta.jpg" alt="Limonada Menta">
+            <div class="info">
+                <h3>Limonada Menta Jengibre</h3>
+                <p>La especialidad de la casa para la sed.</p>
+                <span class="precio">$2.500</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="bebidas">
+            <img src="img/agua-mineral.jpg" alt="Agua Mineral">
+            <div class="info">
+                <h3>Agua Mineral</h3>
+                <p>Botella personal con o sin gas.</p>
+                <span class="precio">$1.500</span>
+            </div>
+        </div>
+        <div class="producto" data-categoria="bebidas">
+            <img src="img/bebida-lata.jpg" alt="Bebida Lata">
+            <div class="info">
+                <h3>Bebida en Lata</h3>
+                <p>Coca-Cola, Fanta o Sprite helada.</p>
+                <span class="precio">$1.800</span>
+            </div>
+        </div>
+
+    </div>
 
     <footer>
-        <p>Menú digital</p>
+        <p>© 2024 Restaurante App - Creado por ti</p>
     </footer>
 
     <script src="script.js"></script>
