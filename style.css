@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background-color: #ff6b6b;
+    background-color: #428f9c;
     color: white;
     padding: 20px;
     text-align: center;
@@ -40,7 +40,7 @@ header {
 }
 
 #buscador:focus {
-    border-color: #ff6b6b;
+    border-color: #428f9c;
     outline: none;
 }
 
@@ -67,7 +67,7 @@ header {
 }
 
 .btn-filtro.active {
-    background-color: #ff6b6b;
+    background-color: #428f9c;
     color: white;
     box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
 }
@@ -119,7 +119,7 @@ header {
 
 .precio {
     display: inline-block;
-    background-color: #ff6b6b;
+    background-color: #428f9c;
     color: white;
     padding: 5px 12px;
     border-radius: 10px;
