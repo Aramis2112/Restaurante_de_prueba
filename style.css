@@ -1,0 +1,93 @@
+/* 1. RESET Y BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* La fuente que cargamos en HTML */
+    background-color: #f4f4f9; /* Un gris muy clarito de fondo */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 2. ENCABEZADO */
+header {
+    background-color: #ff6b6b; /* Color principal (puedes cambiarlo) */
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* 3. CONTENEDOR PRINCIPAL */
+#menu-container {
+    max-width: 600px; /* Para que no se estire demasiado en PC */
+    margin: 0 auto;   /* Centrado */
+    padding: 20px;
+}
+
+/* 4. CATEGORÍAS (Entradas, Fondos...) */
+.categoria {
+    margin-bottom: 40px;
+}
+
+.categoria h2 {
+    font-size: 1.4rem;
+    color: #ff6b6b;
+    border-bottom: 2px solid #ff6b6b;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+/* 5. TARJETAS DE PLATOS */
+.plato-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra suave */
+    transition: transform 0.2s; /* Animación pequeña */
+}
+
+/* Efecto al pasar el mouse (o tocar) */
+.plato-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.plato-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #2d3436;
+}
+
+.descripcion {
+    font-size: 0.9rem;
+    color: #636e72;
+    margin-bottom: 10px;
+}
+
+.precio {
+    font-weight: bold;
+    color: #2d3436;
+    font-size: 1.1rem;
+    text-align: right; /* Precio a la derecha */
+}
+
+/* 6. PIE DE PÁGINA */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #b2bec3;
+    font-size: 0.8rem;
+}
