@@ -1,469 +1,686 @@
-/* === VARIABLES GLOBALES E INTELIGENTES === */
+/* === VARIABLES GLOBALES === */
 :root {
-    /* Tu color de marca (Turquesa) */
-    --color-acento: #428f9c;          /* Define el color principal turquesa */
-    --color-acento-hover: #4da3b3;    /* Define un tono más claro para cuando el mouse pasa por encima */
-
-    /* Colores Modo Claro (Por defecto) */
-    --bg-body: #f4f4f4;               /* Fondo gris muy claro para el cuerpo de la página */
-    --bg-card: #ffffff;               /* Fondo blanco para las tarjetas de productos */
-    --bg-inputs: #ffffff;             /* Fondo blanco para el buscador */
-    --text-main: #333333;             /* Color de texto principal (gris oscuro) */
-    --text-sec: #666666;              /* Color de texto secundario (gris medio) */
-    --border-color: #eeeeee;          /* Color para bordes sutiles */
-    --shadow-card: 0 5px 15px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad a las tarjetas */
+    --color-acento: #428f9c;        /* color principal turquesa de la marca */
+    --color-acento-hover: #4da3b3;  /* versión más clara para cuando pasas el mouse */
+    --bg-body: #f4f4f4;             /* fondo gris claro para el modo día */
+    --bg-card: #ffffff;             /* fondo blanco para las tarjetas de producto */
+    --bg-inputs: #ffffff;           /* fondo blanco para el buscador */
+    --text-main: #333333;           /* color de texto principal (casi negro) */
+    --text-sec: #666666;            /* color de texto secundario (gris) */
+    --border-color: #eeeeee;        /* color suave para bordes y líneas */
+    --shadow-card: 0 5px 15px rgba(0,0,0,0.1); /* sombra suave para dar profundidad */
 }
 
-/* Colores Modo Oscuro (Se activan con JS) */
 body.dark-mode {
-    --bg-body: #121212;      /* Cambia el fondo a negro casi puro */
-    --bg-card: #1e1e1e;      /* Cambia las tarjetas a gris oscuro */
-    --bg-inputs: #2a2a2a;    /* Cambia el buscador a gris oscuro */
-    --text-main: #e0e0e0;    /* Cambia el texto principal a blanco suave */
-    --text-sec: #aaaaaa;     /* Cambia el texto secundario a gris claro */
-    --border-color: #333333; /* Oscurece los bordes */
-    --shadow-card: 0 5px 15px rgba(0,0,0,0.5); /* Hace la sombra más intensa para que se note en lo oscuro */
+    --bg-body: #121212;             /* cambia el fondo a casi negro */
+    --bg-card: #1e1e1e;             /* cambia las tarjetas a gris oscuro */
+    --bg-inputs: #2a2a2a;           /* oscurece los inputs */
+    --text-main: #e0e0e0;           /* cambia el texto a blanco suave */
+    --text-sec: #aaaaaa;            /* cambia el texto secundario a gris claro */
+    --border-color: #333333;        /* oscurece los bordes */
+    --shadow-card: 0 5px 15px rgba(0,0,0,0.5); /* intensifica las sombras */
 }
 
 /* === REINICIO BÁSICO === */
 * {
-    scroll-behavior: smooth;    /* Hace que el desplazamiento (scroll) sea suave al ir a secciones */
-    margin: 0;                  /* Elimina los márgenes por defecto de todos los elementos */
-    padding: 0;                 /* Elimina el relleno interno por defecto */
-    box-sizing: border-box;     /* Asegura que el padding no aumente el tamaño total de los elementos */
-    font-family: 'Poppins', sans-serif; /* Aplica la tipografía Poppins a todo el sitio */
+    scroll-behavior: smooth;        /* hace que el desplazamiento al hacer clic sea suave */
+    margin: 0;                      /* quita los márgenes por defecto del navegador */
+    padding: 0;                     /* quita los rellenos por defecto */
+    box-sizing: border-box;         /* asegura que los bordes no aumenten el tamaño real */
+    font-family: 'Poppins', sans-serif; /* aplica la tipografía poppins a todo */
 }
 
 body {
-    background-color: var(--bg-body); /* Aplica el color de fondo definido en las variables */
-    color: var(--text-main);          /* Aplica el color de texto principal */
-    transition: background-color 0.3s, color 0.3s; /* Suaviza el cambio de colores al cambiar entre modo claro/oscuro */
+    background-color: var(--bg-body); /* aplica el color de fondo definido arriba */
+    color: var(--text-main);          /* aplica el color de texto definido */
+    transition: background-color 0.3s, color 0.3s; /* suaviza el cambio a modo oscuro */
 }
 
-/* Regla para que TODOS los títulos cambien de color en modo oscuro */
 h1, h2, h3, h4, h5 {
-    color: var(--text-main);    /* Asegura que los títulos usen la variable de color principal */
-    transition: color 0.3s;     /* Suaviza el cambio de color en los títulos */
+    color: var(--text-main);          /* asegura que los títulos usen el color correcto */
+    transition: color 0.3s;           /* suaviza el cambio de color en títulos */
 }
 
+/* === HEADER Y BOTÓN TEMA === */
 header {
-    background-color: var(--color-acento); /* Fondo turquesa para el encabezado */
-    color: white;                          /* Texto blanco dentro del encabezado */
-    padding: 20px;                         /* Espacio interno de 20px alrededor del contenido */
-    text-align: center;                    /* Centra el texto u logo del header */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Añade una pequeña sombra inferior */
+    background-color: var(--color-acento); /* fondo turquesa para la barra superior */
+    color: white;                          /* texto blanco */
+    padding: 20px;                         /* espacio interno de 20px */
+    text-align: center;                    /* centra el texto */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* sombra pequeña abajo del header */
 }
 
-/* === BOTÓN FLOTANTE MODO OSCURO === */
 .btn-tema {
-    position: fixed;            /* Fija el botón en la pantalla, no se mueve al hacer scroll */
-    top: 20px;                  /* Distancia desde la parte superior */
-    right: 20px;                /* Distancia desde la derecha */
-    z-index: 1001;              /* Asegura que esté por encima de casi todo (capa alta) */
-    background-color: var(--bg-card); /* Usa el fondo de tarjeta (blanco o gris oscuro) */
-    color: var(--text-main);    /* Usa el color de texto principal para el icono */
-    border: none;               /* Quita el borde por defecto */
-    width: 45px;                /* Ancho del botón */
-    height: 45px;               /* Alto del botón */
-    border-radius: 50%;         /* Lo hace perfectamente redondo */
-    font-size: 1.2rem;          /* Tamaño del icono dentro del botón */
-    cursor: pointer;            /* Cambia el cursor a "mano" al pasar por encima */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Sombra para que flote visualmente */
-    transition: 0.3s;           /* Suaviza las animaciones del botón */
-    display: flex;              /* Usa Flexbox para centrar el icono */
-    justify-content: center;    /* Centra horizontalmente */
-    align-items: center;        /* Centra verticalmente */
+    position: fixed;                /* fija el botón en la pantalla, no se mueve al bajar */
+    top: 20px;                      /* a 20px del borde superior */
+    right: 20px;                    /* a 20px del borde derecho */
+    z-index: 1001;                  /* lo pone por encima de todo (capa 1001) */
+    background-color: var(--bg-card); /* usa el color de fondo de tarjeta */
+    color: var(--text-main);        /* usa el color de texto principal */
+    border: none;                   /* quita el borde */
+    width: 45px;                    /* ancho del botón */
+    height: 45px;                   /* alto del botón */
+    border-radius: 50%;             /* lo hace perfectamente redondo */
+    font-size: 1.2rem;              /* tamaño del icono */
+    cursor: pointer;                /* cambia el cursor a manito */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* sombra para que parezca flotar */
+    transition: 0.3s;               /* suaviza las animaciones */
+    display: flex;                  /* activa flexbox */
+    justify-content: center;        /* centra el icono horizontalmente */
+    align-items: center;            /* centra el icono verticalmente */
 }
 
 .btn-tema:hover {
-    transform: scale(1.1);          /* Aumenta el tamaño un 10% al pasar el mouse */
-    color: var(--color-acento);     /* Cambia el color del icono a turquesa */
+    transform: scale(1.1);          /* agranda el botón un 10% al pasar el mouse */
+    color: var(--color-acento);     /* cambia el icono a turquesa */
 }
 
-/* === CONTROLES (Buscador y Filtros) === */
+/* === CONTROLES (BUSCADOR Y FILTROS) === */
 .controles {
-    text-align: center;             /* Centra todo el contenido (buscador y botones) */
-    padding: 20px;                  /* Espacio interno */
-    background: var(--bg-card);     /* Fondo adaptable al tema (claro u oscuro) */
-    margin-bottom: 20px;            /* Espacio debajo de la sección de controles */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra muy sutil */
-    transition: background-color 0.3s; /* Transición suave si cambia el fondo */
+    text-align: center;             /* centra todo el contenido */
+    padding: 20px;                  /* espacio interno */
+    background: var(--bg-card);     /* fondo del color de las tarjetas */
+    margin-bottom: 20px;            /* separación con lo que sigue abajo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* sombra muy sutil */
+    transition: background-color 0.3s; /* transición suave para modo oscuro */
 }
 
 #buscador {
-    width: 100%;                    /* Ocupa el ancho disponible */
-    max-width: 500px;               /* Pero no pasa de 500px de ancho */
-    padding: 12px 20px;             /* Relleno interno para que el texto no pegue al borde */
-    border: 2px solid var(--border-color); /* Borde de 2px con color variable */
-    background-color: var(--bg-inputs);    /* Fondo del input variable */
-    color: var(--text-main);        /* Color del texto que se escribe */
-    border-radius: 30px;            /* Bordes muy redondeados */
-    font-size: 16px;                /* Tamaño de letra legible */
-    margin-bottom: 20px;            /* Espacio debajo del buscador */
-    transition: 0.3s;               /* Suaviza los cambios de estado */
+    width: 100%;                    /* ocupa todo el ancho disponible */
+    max-width: 500px;               /* pero no más de 500px */
+    padding: 12px 20px;             /* espacio interno para que el texto respire */
+    border: 2px solid var(--border-color); /* borde de 2px sólido */
+    background-color: var(--bg-inputs); /* color de fondo del input */
+    color: var(--text-main);        /* color del texto que escribes */
+    border-radius: 30px;            /* bordes muy redondeados */
+    font-size: 16px;                /* tamaño de letra legible */
+    margin-bottom: 20px;            /* espacio debajo del buscador */
+    transition: 0.3s;               /* suaviza el cambio de borde al hacer clic */
 }
 
 #buscador:focus {
-    border-color: var(--color-acento); /* Pinta el borde de turquesa al hacer clic dentro */
-    outline: none;                     /* Quita el borde azul por defecto del navegador */
+    border-color: var(--color-acento); /* pone el borde turquesa al escribir */
+    outline: none;                  /* quita el borde azul feo del navegador */
 }
 
 .filtros {
-    display: flex;              /* Pone los botones uno al lado del otro */
-    justify-content: center;    /* Los centra en la pantalla */
-    gap: 10px;                  /* Espacio de 10px entre cada botón */
-    flex-wrap: wrap;            /* Permite que bajen de línea si no caben en móviles */
+    display: flex;                  /* pone los botones en fila */
+    justify-content: center;        /* los centra horizontalmente */
+    gap: 10px;                      /* espacio de 10px entre botones */
+    flex-wrap: wrap;                /* si no caben, bajan a la siguiente línea */
 }
 
 .btn-filtro {
-    padding: 8px 16px;          /* Tamaño del botón (relleno) */
-    border: none;               /* Sin bordes */
-    background-color: var(--border-color); /* Fondo gris claro adaptable */
-    color: var(--text-sec);     /* Texto gris medio */
-    border-radius: 20px;        /* Bordes redondeados estilo "pastilla" */
-    cursor: pointer;            /* Cursor de mano */
-    transition: all 0.3s ease;  /* Animación suave para todo */
-    font-weight: 500;           /* Grosor de letra medio */
+    padding: 8px 16px;              /* tamaño del botón */
+    border: none;                   /* sin bordes */
+    background-color: var(--border-color); /* fondo gris suave por defecto */
+    color: var(--text-sec);         /* texto gris oscuro */
+    border-radius: 20px;            /* bordes redondeados */
+    cursor: pointer;                /* cursor de manito */
+    transition: all 0.3s ease;      /* animación suave para todo */
+    font-weight: 500;               /* grosor de letra medio */
 }
 
 .btn-filtro:hover {
-    background-color: #ccc;     /* Oscurece un poco el fondo al pasar el mouse */
-    transform: scale(1.1);      /* Crece un poco */
-    z-index: 10;                /* Se pone por encima de otros si se solapan */
+    background-color: #ccc;         /* oscurece un poco al pasar el mouse */
+    transform: scale(1.1);          /* crece un poco */
+    z-index: 10;                    /* se pone encima de los otros */
 }
 
 .btn-filtro.active {
-    background-color: var(--color-acento); /* Fondo turquesa si está activo */
-    color: white;                          /* Texto blanco si está activo */
+    background-color: var(--color-acento); /* fondo turquesa si está activo */
+    color: white;                   /* texto blanco si está activo */
 }
 
-/* === MENÚ GRID (Tarjeta de Producto) === */
+/* === GRID DE PRODUCTOS (CORREGIDO) === */
 .menu-grid {
-    display: grid;              /* Activa el sistema de rejilla (Grid) */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Crea columnas automáticas de mínimo 250px */
-    gap: 20px;                  /* Espacio entre las tarjetas */
-    padding: 20px;              /* Espacio interno del contenedor */
-    max-width: 1200px;          /* Ancho máximo del contenedor de productos */
-    margin: 0 auto;             /* Centra el contenedor en la pantalla */
-    min-height: 100vh;          /* Asegura que ocupe al menos el alto de la pantalla */
-    align-content: start;       /* Alinea el contenido al inicio */
+    display: grid;                  /* activa el modo grilla */
+    /* crea columnas automáticas de mínimo 250px */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px;                      /* espacio entre tarjetas */
+    padding: 20px;                  /* espacio alrededor de la grilla */
+    max-width: 1200px;              /* ancho máximo del contenedor */
+    margin: 0 auto;                 /* centra la grilla en la pantalla */
+    min-height: 100vh;              /* altura mínima de pantalla completa */
+    align-content: start;           /* alinea el contenido al inicio */
 }
 
 .producto {
-    background-color: var(--bg-card); /* Fondo de la tarjeta adaptable */
-    border-radius: 15px;              /* Bordes redondeados de la tarjeta */
-    overflow: hidden;                 /* Oculta lo que se salga de los bordes redondeados */
-    box-shadow: var(--shadow-card);   /* Sombra definida en variables */
-    transition: transform 0.3s, background-color 0.3s; /* Animación de movimiento y color */
-    display: block;                   /* Comportamiento de bloque */
-    cursor: pointer;                  /* Indica que es clicable */
+    background-color: var(--bg-card); /* fondo de la tarjeta */
+    border-radius: 15px;            /* esquinas redondeadas */
+    overflow: hidden;               /* oculta lo que se salga de los bordes */
+    box-shadow: var(--shadow-card); /* aplica la sombra definida */
+    
+    /* === ANIMACIÓN DE ENTRADA === */
+    opacity: 0;                     /* Empieza invisible */
+    transform: translateY(50px);    /* Empieza 50px más abajo */
+    
+    /* UNIFICAMOS TODAS LAS TRANSICIONES AQUÍ PARA QUE NO SE ROMPAN */
+    transition: 
+        opacity 0.6s ease-out,      /* Para aparecer */
+        transform 0.6s ease-out,    /* Para subir y hover */
+        box-shadow 0.3s,            /* Para la sombra hover */
+        background-color 0.3s;      /* Para el modo oscuro */
+
+    display: block;                 /* se comporta como bloque */
+    cursor: pointer;                /* indica que es clicable */
 }
 
-/* CORRECCIÓN DEL HOVER CON ANIMACIÓN ACTIVA */
-.producto.active:hover {
-    transform: translateY(-10px);        /* Mueve la tarjeta hacia arriba al pasar el mouse */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Aumenta la sombra para efecto de elevación */
+.producto.mostrar {
+    opacity: 1;                     /* Se vuelve visible */
+    transform: translateY(0);       /* Vuelve a su posición original */
+}
+
+.producto:hover {
+    transform: translateY(-10px);   /* la tarjeta flota hacia arriba al pasar mouse */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* la sombra crece */
 }
 
 .producto img {
-    width: 100%;                /* La imagen ocupa todo el ancho de la tarjeta */
-    height: 180px;              /* Altura fija de 180px */
-    object-fit: cover;          /* Recorta la imagen para llenar el espacio sin deformarse */
+    width: 100%;                    /* la imagen ocupa todo el ancho */
+    height: 180px;                  /* altura fija para que todas sean iguales */
+    object-fit: cover;              /* recorta la imagen para que no se deforme */
 }
 
 .producto .info {
-    padding: 15px;              /* Espacio interno para el texto dentro de la tarjeta */
+    padding: 15px;                  /* espacio interno del texto */
 }
 
 .producto h3 {
-    margin-bottom: 10px;        /* Espacio debajo del título del producto */
-    font-size: 1.1rem;          /* Tamaño de letra ligeramente más grande */
-    color: var(--text-main);    /* Color del título adaptable */
+    margin-bottom: 10px;            /* espacio debajo del título */
+    font-size: 1.1rem;              /* tamaño de letra un poco más grande */
+    color: var(--text-main);        /* color del título */
 }
 
 .producto p {
-    font-size: 0.9rem;          /* Tamaño de letra pequeño para la descripción */
-    color: var(--text-sec);     /* Color gris para descripción */
-    margin-bottom: 15px;        /* Espacio debajo de la descripción */
+    font-size: 0.9rem;              /* tamaño de descripción más pequeño */
+    color: var(--text-sec);         /* color gris para descripción */
+    margin-bottom: 15px;            /* espacio debajo */
 }
 
 .precio {
-    display: inline-block;          /* Se comporta como bloque pero en línea */
-    background-color: var(--color-acento); /* Fondo de la etiqueta de precio */
-    color: white;                   /* Texto blanco */
-    padding: 5px 12px;              /* Relleno de la etiqueta */
-    border-radius: 10px;            /* Bordes redondeados */
-    font-weight: bold;              /* Letra negrita */
-    font-size: 0.95rem;             /* Tamaño de letra */
+    display: inline-block;          /* permite poner padding y margin */
+    background-color: var(--color-acento); /* fondo turquesa para el precio */
+    color: white;                   /* texto blanco */
+    padding: 5px 12px;              /* espacio dentro de la etiqueta */
+    border-radius: 10px;            /* bordes redondeados */
+    font-weight: bold;              /* letra negrita */
+    font-size: 0.95rem;             /* tamaño de letra */
 }
 
-/* Clase utilitaria para ocultar elementos */
-.hide {
-    display: none !important;   /* Fuerza a ocultar el elemento (usado en filtros) */
-}
-
-/* Estilo del Hero Section */
+/* === HERO SECTION (PORTADA) === */
 .hero {
-    height: 100vh;              /* Ocupa el 100% de la altura de la ventana */
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-hero.jpg'); /* Imagen de fondo con capa oscura encima */
-    background-size: cover;     /* La imagen cubre todo el fondo */
-    background-position: center;/* La imagen se centra */
-    display: flex;              /* Usa flexbox para alinear contenido */
-    align-items: center;        /* Centra verticalmente */
-    justify-content: center;    /* Centra horizontalmente */
-    text-align: center;         /* Alinea el texto al centro */
-    color: white;               /* Color de texto blanco */
-    margin-bottom: 30px;        /* Espacio debajo del banner */
+    height: 100vh;                  /* altura del 100% de la ventana visible */
+    /* fondo con degradado oscuro + imagen */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-hero.jpg');
+    background-size: cover;         /* la imagen cubre todo el espacio */
+    background-position: center;    /* centra la imagen */
+    display: flex;                  /* usa flexbox para centrar contenido */
+    align-items: center;            /* centra verticalmente */
+    justify-content: center;        /* centra horizontalmente */
+    text-align: center;             /* alinea el texto al centro */
+    color: white;                   /* texto blanco */
+    margin-bottom: 30px;            /* margen inferior */
+    
+    /* IMPORTANTE: ESTO PERMITE POSICIONAR EL CARTELITO DENTRO */
+    position: relative;             /* establece el marco de referencia */
 }
 
+/* === CARTELITO DE ESTADO (ABIERTO/CERRADO) === */
+#estado-local {
+    position: absolute;             /* posición libre dentro del hero */
+    bottom: 20px;                   /* pegado abajo a 20px */
+    left: 20px;                     /* pegado a la izquierda a 20px */
+    z-index: 10;                    /* capa superior (encima de la foto) */
+    
+    margin-bottom: 0;               /* elimina márgenes extra */
+    font-size: 0.9rem;              /* tamaño de letra */
+    backdrop-filter: blur(5px);     /* efecto de vidrio borroso detrás */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); /* sombra para leerse mejor */
+}
+
+/* === TÍTULO GIGANTE HERO === */
 .contenido-hero h1 {
-    font-size: 3.5rem;          /* Título muy grande */
-    margin-bottom: 10px;        /* Espacio debajo del título */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra negra al texto para leerse mejor */
-    color: white;               /* Forzamos blanco en el banner siempre */
+    font-family: "Anton", sans-serif; /* usa la fuente gruesa anton */
+    font-size: 15vw;                /* tamaño gigante (15% del ancho de pantalla) */
+    color: var(--color-acento);     /* color turquesa */
+    text-transform: uppercase;      /* fuerza mayúsculas */
+    line-height: 1;                 /* altura de línea compacta */
+
+    /* === MODIFICACIÓN DE FORMA === */
+    /* comprime el ancho al 80% (0.8) y mantiene altura (1) */
+    transform: scale(0.8 , 1);      
+    
+    margin-bottom: 30px;            /* espacio debajo del título */
 }
 
 .contenido-hero p {
-    font-size: 1.2rem;          /* Subtítulo grande */
-    margin-bottom: 20px;        /* Espacio debajo del subtítulo */
+    font-size: 1.2rem;              /* subtítulo un poco más grande */
+    margin-bottom: 20px;            /* espacio debajo */
 }
 
 .btn-llamada {
-    display: inline-block;      /* Comportamiento de botón */
-    padding: 10px 30px;         /* Relleno grande */
-    background-color: var(--color-acento); /* Fondo turquesa */
-    color: white;               /* Texto blanco */
-    text-decoration: none;      /* Quita el subrayado de enlace */
-    border-radius: 50px;        /* Botón completamente redondo en bordes */
-    font-weight: bold;          /* Letra negrita */
-    transition: transform 0.3s; /* Animación suave */
+    display: inline-block;          /* comportamiento de bloque en línea */
+    padding: 10px 30px;             /* tamaño del botón */
+    background-color: var(--color-acento); /* fondo turquesa */
+    color: white;                   /* texto blanco */
+    text-decoration: none;          /* quita el subrayado del enlace */
+    border-radius: 50px;            /* botón ovalado */
+    font-weight: bold;              /* texto en negrita */
+    transition: transform 0.3s;     /* animación suave */
 }
 
 .btn-llamada:hover {
-    transform: scale(1.1);              /* Crece al pasar el mouse */
-    background-color: var(--color-acento-hover); /* Cambia a turquesa claro */
+    transform: scale(1.1);          /* crece al pasar el mouse */
+    background-color: var(--color-acento-hover); /* cambia color al hover */
 }
 
-.btn-wsp {
-    position: fixed;            /* Fijo en la pantalla */
-    bottom: 20px;               /* Abajo */
-    right: 20px;                /* A la derecha */
-    width: 60px;                /* Ancho del botón */
-    height: 60px;               /* Alto del botón */
-    background-color: #25d366;  /* Color oficial de WhatsApp */
-    border-radius: 50%;         /* Redondo */
-    display: flex;              /* Para centrar el icono */
-    align-items: center;        /* Centra verticalmente */
-    justify-content: center;    /* Centra horizontalmente */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra flotante */
-    z-index: 100;               /* Capa superior */
-    transition: transform 0.3s; /* Animación suave */
-}
-
-.btn-wsp:hover {
-    transform: translateY(-5px); /* Se eleva un poco al pasar el mouse */
-}
-
-.btn-wsp img {
-    width: 35px;                /* Tamaño del icono de WhatsApp */
-    height: 35px;               /* Tamaño del icono de WhatsApp */
-}
-
-/* === ESTILOS DEL MEGA FOOTER === */
-/* El footer lo mantenemos oscuro siempre por diseño */
+/* === FOOTER (PIE DE PÁGINA) === */
 .footer-mega {
-    background-color: #222;     /* Fondo gris muy oscuro casi negro */
-    color: #eee;                /* Texto gris muy claro */
-    padding-top: 60px;          /* Relleno superior grande */
-    margin-top: 50px;           /* Margen superior para separarlo del contenido */
+    background-color: #222;
+    color: #eee;
+    padding-top: 60px;
+    margin-top: 50px;
+    opacity: 0;                   /* Invisible al inicio */
+    transform: translateY(50px);  /* Empieza 50px más abajo */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Animación lenta y elegante */
+}
+
+.footer-mega.mostrar {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .footer-container {
-    max-width: 1200px;          /* Ancho máximo */
-    margin: 0 auto;             /* Centrado */
-    display: grid;              /* Grid para las columnas */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
-    gap: 40px;                  /* Espacio entre columnas */
-    padding: 0 20px 40px 20px;  /* Relleno interno */
+    max-width: 1200px;              /* ancho máximo */
+    margin: 0 auto;                 /* centrado */
+    display: grid;                  /* sistema de columnas */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* columnas responsivas */
+    gap: 40px;                      /* espacio entre columnas */
+    padding: 0 20px 40px 20px;      /* relleno interno */
 }
 
 .footer-col h3 {
-    color: var(--color-acento); /* Títulos en color turquesa */
-    font-size: 1.2rem;          /* Tamaño de letra */
-    margin-bottom: 20px;        /* Espacio debajo del título */
-    position: relative;         /* Para posicionar la línea decorativa */
+    color: var(--color-acento);     /* títulos en turquesa */
+    font-size: 1.2rem;              /* tamaño de título */
+    margin-bottom: 20px;            /* espacio debajo */
+    position: relative;             /* necesario para la línea decorativa */
 }
 
 .footer-col h3::after {
-    content: '';                /* Crea un elemento vacío para la línea */
-    position: absolute;         /* Posición absoluta respecto al h3 */
-    left: 0;                    /* Pegado a la izquierda */
-    bottom: -8px;               /* Un poco más abajo del texto */
-    width: 40px;                /* Ancho de la línea */
-    height: 3px;                /* Grosor de la línea */
-    background-color: var(--color-acento); /* Color de la línea decorativa */
+    content: '';                    /* crea un elemento vacío */
+    position: absolute;             /* posición absoluta respecto al h3 */
+    left: 0;                        /* pegado a la izquierda */
+    bottom: -8px;                   /* 8px debajo del texto */
+    width: 40px;                    /* 40px de ancho */
+    height: 3px;                    /* 3px de alto */
+    background-color: var(--color-acento); /* color de la línea */
 }
 
-.footer-col p {
-    color: #bbb;                /* Color de texto gris suave */
-    line-height: 1.6;           /* Altura de línea para leer mejor */
-    margin-bottom: 15px;        /* Espacio entre párrafos */
-    font-size: 0.95rem;         /* Tamaño de letra */
+.footer-col p, .footer-col ul li {
+    color: #bbb;                    /* texto gris claro */
+    line-height: 1.6;               /* altura de línea para leer mejor */
+    margin-bottom: 10px;            /* espacio entre párrafos */
+    font-size: 0.95rem;             /* tamaño de letra */
 }
 
 .footer-col ul {
-    list-style: none;           /* Quita los puntos de la lista */
-    padding: 0;                 /* Quita el relleno izquierdo */
-}
-
-.footer-col ul li {
-    margin-bottom: 10px;        /* Espacio entre elementos de lista */
-    color: #bbb;                /* Color gris */
+    list-style: none;               /* quita los puntos de la lista */
+    padding: 0;                     /* quita el relleno */
 }
 
 .redes-sociales a {
-    display: inline-flex;       /* Botones en línea */
-    justify-content: center;    /* Centra icono */
-    align-items: center;        /* Centra icono */
-    width: 40px;                /* Tamaño botón */
-    height: 40px;               /* Tamaño botón */
-    background-color: #333;     /* Fondo gris oscuro */
-    color: white;               /* Icono blanco */
-    border-radius: 50%;         /* Redondo */
-    margin-right: 10px;         /* Espacio a la derecha */
-    text-decoration: none;      /* Sin subrayado */
-    transition: 0.3s;           /* Animación suave */
+    display: inline-flex;           /* caja flexible en línea */
+    justify-content: center;        /* centra el icono */
+    align-items: center;            /* centra verticalmente */
+    width: 40px;                    /* ancho del círculo */
+    height: 40px;                   /* alto del círculo */
+    background-color: #333;         /* fondo gris oscuro */
+    color: white;                   /* icono blanco */
+    border-radius: 50%;             /* hace que sea redondo */
+    margin-right: 10px;             /* separación entre iconos */
+    text-decoration: none;          /* sin subrayado */
+    transition: 0.3s;               /* transición suave */
 }
 
 .redes-sociales a:hover {
-    background-color: var(--color-acento); /* Fondo turquesa al pasar mouse */
-    transform: translateY(-3px);           /* Pequeño salto hacia arriba */
+    background-color: var(--color-acento); /* cambia a turquesa al hover */
+    transform: translateY(-3px);    /* flota un poco hacia arriba */
 }
 
 .footer-bottom {
-    background-color: #111;     /* Fondo más oscuro para la parte final */
-    text-align: center;         /* Texto centrado */
-    padding: 20px;              /* Relleno */
-    border-top: 1px solid #333; /* Línea separadora superior */
-    font-size: 0.8rem;          /* Letra pequeña */
-    color: #888;                /* Color gris oscuro */
+    background-color: #111;         /* fondo negro más oscuro */
+    text-align: center;             /* texto centrado */
+    padding: 20px;                  /* espacio interno */
+    border-top: 1px solid #333;     /* línea superior sutil */
+    font-size: 0.8rem;              /* letra pequeña */
+    color: #888;                    /* color gris oscuro */
 }
 
-/* === ANIMACIONES DE ENTRADA (Scroll Reveal) === */
-.reveal {
-    opacity: 0;                 /* Invisible inicialmente */
-    transform: translateY(50px);/* Desplazado 50px hacia abajo */
-    transition: all 0.8s ease-out; /* La animación de aparición dura 0.8s */
-}
-
-.reveal.active {
-    opacity: 1;                 /* Se vuelve visible */
-    transform: translateY(0);   /* Vuelve a su posición original */
-}
-
-/* === ESTILOS DE LA VENTANA MODAL === */
+/* === MODAL (VENTANA EMERGENTE) === */
 .modal {
-    display: none;              /* Oculto por defecto */
-    position: fixed;            /* Fijo sobre toda la pantalla */
-    z-index: 1000;              /* Capa muy alta (debajo del botón de tema) */
-    left: 0;                    /* Pegado a la izquierda */
-    top: 0;                     /* Pegado arriba */
-    width: 100%;                /* Ancho total */
-    height: 100%;               /* Alto total */
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
-    justify-content: center;    /* Centra la ventana modal horizontalmente */
-    align-items: center;        /* Centra la ventana modal verticalmente */
-    backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo detrás del modal */
+    display: none;                  /* oculto por defecto */
+    position: fixed;                /* fijo en pantalla */
+    z-index: 1000;                  /* capa muy alta */
+    left: 0;                        /* pegado a la izquierda */
+    top: 0;                         /* pegado arriba */
+    width: 100%;                    /* ancho total */
+    height: 100%;                   /* alto total */
+    background-color: rgba(0, 0, 0, 0.8); /* fondo negro transparente */
+    justify-content: center;        /* centra contenido horizontal */
+    align-items: center;            /* centra contenido vertical */
+    backdrop-filter: blur(5px);     /* difumina el fondo */
 }
 
 .modal-content {
-    background-image: url('img/fondo-modal.jpg'); /* Imagen de fondo para el modal */
-    background-size: cover;     /* Cubre todo el fondo */
-    background-position: center;/* Centra la imagen */
-    color: #f0f0f0;             /* Texto claro */
-    padding: 30px;              /* Relleno interno */
-    border-radius: 20px;        /* Bordes redondeados */
-    text-align: center;         /* Texto centrado */
-    width: 90%;                 /* Ancho del 90% en móviles */
-    max-width: 500px;           /* Ancho máximo en PC */
-    position: relative;         /* Posición relativa para ubicar la X de cerrar */
-    box-shadow: none;           /* Sin sombra extra */
-    animation: zoomIn 0.3s ease;/* Animación de entrada "zoom" */
-    border: 1px solid rgba(255,255,255,0.1); /* Borde sutil */
+    background-image: url('img/fondo-modal.jpg'); /* imagen de fondo del modal */
+    background-size: cover;         /* cubre todo el fondo */
+    background-position: center;    /* centra la imagen */
+    color: #f0f0f0;                 /* texto claro */
+    padding: 30px;                  /* relleno interno */
+    border-radius: 20px;            /* bordes redondeados */
+    text-align: center;             /* texto centrado */
+    width: 90%;                     /* ancho del 90% en móviles */
+    max-width: 500px;               /* ancho máximo en pc */
+    position: relative;             /* referencia para botón cerrar */
+    animation: zoomIn 0.3s ease;    /* animación de entrada */
+    border: 1px solid rgba(255,255,255,0.1); /* borde sutil */
 }
 
-/* Texto con sombra para leerse sobre la imagen */
-.modal-content h2, 
-.modal-content p, 
-.modal-content .precio-grande {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Sombra negra fuerte al texto */
+.modal-content h2, .modal-content p, .modal-content .precio-grande {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* sombra fuerte al texto */
 }
 
-.modal-content h2 {
-    color: white;               /* Título blanco */
-    margin-top: 10px;           /* Margen superior */
-}
+.modal-content h2 { color: white; margin-top: 10px; }
+.modal-content img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; }
 
-.modal-content p {
-    color: #eee;                /* Párrafo gris claro */
-}
+@keyframes zoomIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } } /* define animación zoom */
 
-@keyframes zoomIn {
-    from { transform: scale(0.7); opacity: 0; } /* Empieza pequeño e invisible */
-    to { transform: scale(1); opacity: 1; }     /* Termina tamaño normal y visible */
-}
-
-.modal-content img {
-    width: 100%;                /* Imagen del producto al 100% del ancho disponible */
-    max-height: 300px;          /* Altura máxima */
-    object-fit: cover;          /* Recorte */
-    border-radius: 15px;        /* Bordes redondeados */
-    margin-bottom: 20px;        /* Espacio debajo de la imagen */
-}
-
-/* === ESTILO RESTAURADO DEL BOTÓN CERRAR (X) === */
 .close-btn {
-    position: absolute;         /* Posición absoluta respecto al modal */
-    top: 0px;                   /* Pegado al borde superior (ajustado según original) */
-    right: 10px;                /* Pegado al borde derecho */
-    font-size: 25px;            /* Tamaño grande de la X */
-    font-weight: bold;          /* Negrita */
-    /* Lo ponemos blanco con sombra para que resalte sobre la imagen de fondo */
-    color: #ffffff;             /* Color blanco */
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Sombra para contraste */
-    cursor: pointer;            /* Cursor de mano */
-    transition: 0.2s;           /* Animación rápida */
-    z-index: 10;                /* Capa superior */
-    /* Quitamos todas las propiedades de "botón redondo" para dejar solo la X */
+    position: absolute;             /* posición absoluta */
+    top: 0px;                       /* pegado arriba */
+    right: 10px;                    /* pegado derecha */
+    font-size: 25px;                /* tamaño grande */
+    font-weight: bold;              /* negrita */
+    color: #ffffff;                 /* blanco */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* sombra */
+    cursor: pointer;                /* manito */
+    transition: 0.2s;               /* transición */
+    z-index: 10;                    /* capa superior */
 }
 
-.close-btn:hover {
-    color: var(--color-acento); /* Solo cambia el color a turquesa al pasar el mouse */
-}
+.close-btn:hover { color: var(--color-acento); } /* cambia color al hover */
 
 .precio-grande {
-    font-size: 1.5rem;          /* Precio en tamaño grande */
-    color: var(--color-acento); /* Color turquesa */
-    font-weight: bold;          /* Negrita */
-    display: block;             /* En bloque propio */
-    margin: 15px 0;             /* Márgenes verticales */
-    /* Borde negro a las letras para que resalte mucho */
-    -webkit-text-stroke: 0.5px black; /* Delineado negro al texto */
+    font-size: 1.5rem;              /* precio grande */
+    color: var(--color-acento);     /* color turquesa */
+    font-weight: bold;              /* negrita */
+    display: block;                 /* bloque propio */
+    margin: 15px 0;                 /* margen vertical */
+    -webkit-text-stroke: 0.5px black; /* borde negro fino a la letra */
 }
 
 .btn-pedir-modal {
-    padding: 12px 30px;         /* Relleno del botón */
-    background-color: var(--color-acento); /* Fondo turquesa */
-    color: white;               /* Texto blanco */
-    border: none;               /* Sin borde */
-    border-radius: 50px;        /* Redondo */
-    font-size: 1rem;            /* Tamaño de letra */
-    font-weight: bold;          /* Negrita */
-    cursor: pointer;            /* Cursor de mano */
-    transition: transform 0.2s; /* Animación rápida */
+    padding: 12px 30px;             /* tamaño botón */
+    background-color: var(--color-acento); /* fondo turquesa */
+    color: white;                   /* texto blanco */
+    border: none;                   /* sin borde */
+    border-radius: 50px;            /* redondeado */
+    font-size: 1rem;                /* tamaño letra */
+    font-weight: bold;              /* negrita */
+    cursor: pointer;                /* manito */
+    transition: transform 0.2s;     /* transición */
 }
 
 .btn-pedir-modal:hover {
-    transform: scale(1.05);     /* Crece un poco al pasar mouse */
-    background-color: var(--color-acento-hover); /* Cambia color */
+    transform: scale(1.05);         /* crece un poco */
+    background-color: var(--color-acento-hover); /* cambia color */
+}
+
+/* === CARRITO === */
+.btn-carrito-flotante {
+    position: fixed;                /* fijo en pantalla */
+    bottom: 90px;                   /* 90px desde abajo */
+    right: 20px;                    /* 20px desde derecha */
+    background-color: white;        /* fondo blanco */
+    color: var(--color-acento);     /* icono turquesa */
+    width: 60px;                    /* ancho */
+    height: 60px;                   /* alto */
+    border-radius: 50%;             /* redondo */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* sombra */
+    display: flex;                  /* flexbox */
+    justify-content: center;        /* centrado */
+    align-items: center;            /* centrado */
+    font-size: 1.5rem;              /* tamaño icono */
+    cursor: pointer;                /* manito */
+    z-index: 1000;                  /* capa alta */
+    transition: transform 0.3s;     /* transición */
+}
+
+.btn-carrito-flotante:hover { transform: scale(1.1); } /* crece al hover */
+
+#contador-carrito {
+    position: absolute;             /* absoluto al botón */
+    top: -5px;                      /* sube un poco */
+    right: -5px;                    /* derecha un poco */
+    background-color: red;          /* fondo rojo */
+    color: white;                   /* texto blanco */
+    font-size: 0.8rem;              /* letra pequeña */
+    font-weight: bold;              /* negrita */
+    width: 25px;                    /* ancho */
+    height: 25px;                   /* alto */
+    display: flex;                  /* flexbox */
+    justify-content: center;        /* centrado */
+    align-items: center;            /* centrado */
+    border-radius: 50%;             /* redondo */
+    border: 2px solid white;        /* borde blanco */
+}
+
+.carrito-sidebar {
+    position: fixed;                /* fijo */
+    top: 0;                         /* arriba */
+    right: -400px;                  /* escondido a la derecha */
+    width: 350px;                   /* ancho del panel */
+    height: 100%;                   /* alto completo */
+    background-color: var(--bg-card); /* fondo */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* sombra izquierda */
+    z-index: 1002;                  /* capa máxima */
+    transition: right 0.4s ease;    /* animación de deslizar */
+    display: flex;                  /* flexbox vertical */
+    flex-direction: column;         /* columna */
+}
+
+.carrito-sidebar.active { right: 0; } /* muestra el carrito */
+
+.carrito-header {
+    background-color: var(--color-acento); /* cabecera turquesa */
+    color: white;                   /* texto blanco */
+    padding: 20px;                  /* relleno */
+    display: flex;                  /* flexbox */
+    justify-content: space-between; /* separa titulo y cerrar */
+    align-items: center;            /* centra vertical */
+}
+
+.close-carrito { font-size: 2rem; cursor: pointer; line-height: 1; } /* botón cerrar */
+
+.carrito-items { flex: 1; padding: 20px; overflow-y: auto; } /* lista scrolleable */
+
+.item-carrito {
+    display: flex;                  /* flexbox */
+    align-items: center;            /* centrado vertical */
+    margin-bottom: 15px;            /* margen abajo */
+    border-bottom: 1px solid var(--border-color); /* línea divisoria */
+    padding-bottom: 10px;           /* relleno abajo */
+}
+
+.item-carrito img {
+    width: 60px; height: 60px;      /* imagen cuadrada pequeña */
+    object-fit: cover;              /* recorte */
+    border-radius: 10px;            /* redondeado */
+    margin-right: 15px;             /* margen derecha */
+}
+
+.item-info h4 { font-size: 0.95rem; color: var(--text-main); margin-bottom: 5px; }
+.item-info p { font-size: 0.9rem; color: var(--color-acento); font-weight: bold; }
+
+.btn-eliminar {
+    margin-left: auto;              /* empuja a la derecha del todo */
+    background: none;               /* sin fondo */
+    border: none;                   /* sin borde */
+    color: #ff4d4d;                 /* rojo */
+    cursor: pointer;                /* manito */
+    font-size: 1.1rem;              /* tamaño */
+}
+
+.carrito-footer {
+    padding: 20px;                  /* relleno */
+    border-top: 1px solid var(--border-color); /* borde superior */
+    background-color: var(--bg-card); /* fondo */
+}
+
+/* CUPÓN */
+.cupon-box { display: flex; gap: 10px; margin-bottom: 10px; } /* caja del cupón */
+.cupon-box input {
+    flex: 1; padding: 10px; border: 1px solid var(--border-color); /* input flexible */
+    border-radius: 5px; background-color: var(--bg-inputs); color: var(--text-main);
+}
+.cupon-box button {
+    padding: 10px 15px; background-color: var(--text-sec); color: white; /* botón gris */
+    border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
+}
+.cupon-box button:hover { background-color: var(--color-acento); } /* hover turquesa */
+
+#msg-cupon { font-size: 0.85rem; margin-bottom: 15px; height: 20px; }
+.texto-error { color: #ff4d4d; }    /* rojo error */
+.texto-exito { color: #25d366; }    /* verde éxito */
+
+/* TOTALES */
+.desglose-total { margin-bottom: 20px; border-top: 1px dashed var(--border-color); padding-top: 15px; }
+.fila-total { display: flex; justify-content: space-between; margin-bottom: 5px; color: var(--text-sec); }
+.fila-total.total-final { font-size: 1.3rem; font-weight: bold; color: var(--text-main); margin-top: 10px; }
+.fila-total.descuento { color: #25d366; }
+
+/* === BOTÓN FINALIZAR PEDIDO (CONTENEDOR) === */
+.btn-checkout {
+    width: 100%;                    /* ancho total */
+    padding: 15px;                  /* relleno */
+    background-color: #25d366;      /* verde whatsapp */
+    color: white;                   /* texto blanco */
+    border: none;                   /* sin borde */
+    border-radius: 50px;            /* redondeado */
+    font-size: 1rem;                /* tamaño */
+    font-weight: bold;              /* negrita */
+    cursor: pointer;                /* manito */
+    transition: background 0.3s;    /* transición */
+    display: flex;                  /* flexbox */
+    justify-content: center;        /* centrado horizontal */
+    align-items: center;            /* centrado vertical */
+    gap: 10px;                      /* separación texto-icono */
+}
+
+/* === ICONO DENTRO DEL BOTÓN (AJUSTE FINO) === */
+.btn-checkout i {
+    position: relative;             /* permite moverlo a mano */
+    top: -1px;                      /* mueve 1px hacia arriba */
+    left: 0px;                      /* sin movimiento horizontal */
+}
+.btn-checkout:hover { background-color: #1ebc57; } /* verde más oscuro al hover */
+
+.btn-wsp {
+    position: fixed;                /* botón flotante fijo */
+    bottom: 20px;                   /* abajo */
+    right: 20px;                    /* derecha */
+    width: 60px; height: 60px;      /* tamaño */
+    background-color: #25d366;      /* verde */
+    border-radius: 50%;             /* redondo */
+    display: flex; align-items: center; justify-content: center; /* centrado */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* sombra */
+    z-index: 100;                   /* capa */
+    transition: transform 0.3s;     /* transición */
+}
+.btn-wsp:hover { transform: translateY(-5px); } /* flota al hover */
+.btn-wsp img { width: 35px; height: 35px; } /* tamaño logo */
+
+/* === TOAST NOTIFICACIONES (ESQUINA INFERIOR IZQUIERDA) === */
+#toast-container {
+    position: fixed;                /* fijo */
+    bottom: 20px;                   /* abajo */
+    left: 20px;                     /* izquierda */
+    z-index: 2000;                  /* capa superior a todo */
+    display: flex;                  /* flexbox */
+    flex-direction: column-reverse; /* nuevos abajo, viejos suben */
+    gap: 10px;                      /* espacio entre notificaciones */
+}
+
+.toast {
+    background-color: var(--bg-card); /* fondo tarjeta */
+    color: var(--text-main);        /* texto principal */
+    padding: 15px 20px;             /* relleno */
+    border-radius: 8px;             /* bordes */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* sombra */
+    border-left: 5px solid var(--color-acento); /* línea de color izquierda */
+    font-size: 0.9rem;              /* tamaño */
+    font-weight: 500;               /* grosor medio */
+    opacity: 0;                     /* invisible al inicio */
+    transform: translateX(-50px);   /* desplazado a la izquierda */
+    animation: slideIn 0.3s forwards, fadeOut 0.5s forwards 3s; /* animaciones */
+    display: flex;                  /* flexbox */
+    align-items: center;            /* centrado */
+    gap: 10px;                      /* espacio icono-texto */
+}
+
+.toast.success { border-left-color: #25d366; } /* borde verde */
+.toast.error { border-left-color: #ff4d4d; }   /* borde rojo */
+.toast.info { border-left-color: #3498db; }    /* borde azul */
+
+/* ANIMACIONES */
+@keyframes slideIn { 
+    to { opacity: 1; transform: translateX(0); } /* entra deslizando */
+}
+
+@keyframes fadeOut { 
+    to { opacity: 0; transform: translateX(-100%); } /* sale hacia la izquierda */
+}
+
+/* ANIMACIONES SCROLL */
+.reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.hide { display: none !important; }
+
+/* === ESTADO DEL RESTAURANTE (ABIERTO/CERRADO) === */
+.estado-badge {
+    display: inline-block;          /* bloque en línea */
+    padding: 8px 15px;              /* relleno */
+    border-radius: 20px;            /* bordes redondos */
+    font-weight: bold;              /* negrita */
+    font-size: 0.9rem;              /* tamaño */
+    margin-bottom: 15px;            /* margen abajo */
+    text-transform: uppercase;      /* mayúsculas */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* sombra */
+    transition: 0.3s;               /* transición */
+}
+
+/* Colores según estado */
+.estado-badge.abierto {
+    background-color: #428f9c;      /* fondo turquesa */
+    color: white;                   /* texto blanco */
+    border: 2px solid #428f9c;      /* borde turquesa */
+}
+
+.estado-badge.cerrado {
+    background-color: #f56959;      /* fondo rojo coral */
+    color: white;                   /* texto blanco */
+    border: 2px solid #f56959;      /* borde rojo coral */
+}
+
+.estado-badge.cargando {
+    background-color: #888;         /* gris */
+    color: white;                   /* blanco */
+}
+
+/* Deshabilitar botón de pedir si está cerrado */
+button:disabled {
+    background-color: #ccc !important; /* gris forzado */
+    cursor: not-allowed !important;    /* cursor prohibido */
+    transform: none !important;        /* sin animaciones */
 }

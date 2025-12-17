@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html lang="es"> <head>
-    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" href="img/favicon.png" type="image/png"> <title>Menú Digital Restaurante</title> <link rel="stylesheet" href="style.css">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Digital Restaurante</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
     <button id="dark-mode-toggle" class="btn-tema">
-        <i class="fas fa-moon"></i> </button>
+        <i class="fas fa-moon"></i> 
+    </button>
     
     <header class="hero">
-        <div class="contenido-hero">
-            <h1>Cosa Rica</h1>
-            <p>Las mejores hamburguesas, pizzas y tacos de la ciudad.</p>
-            <a href="#inicio-menu" class="btn-llamada">Ver Menú</a>
-        </div>
-    </header>
+    
+    <div id="estado-local" class="estado-badge cargando">Verificando horario...</div>
+
+    <div class="contenido-hero">
+        <h1>Cosa Rica</h1>
+        <p>Las mejores hamburguesas, pizzas y tacos de la ciudad.</p>
+        <a href="#inicio-menu" class="btn-llamada">Ver Menú</a>
+    </div>
+
+</header>
 
     <section class="controles" id="inicio-menu">
         <input type="text" id="buscador" placeholder="🔍 ¿Qué se te antoja hoy? (ej. Hamburguesa, Jugo...)">
@@ -34,155 +48,19 @@
     </section>
 
     <div class="menu-grid" id="menu-container">
-        
-        <div class="producto" data-categoria="hamburguesas">
-            <img src="img/hamburguesa-clasica.jpg" alt="Hamburguesa Clásica">
-            <div class="info">
-                <h3>Hamburguesa Clásica</h3>
-                <p>Carne a la parrilla, queso y vegetales frescos.</p>
-                <span class="precio">$5.000</span>
-            </div>
-        </div>
+        </div> 
 
-        <div class="producto" data-categoria="hamburguesas">
-            <img src="img/doble-bacon.jpg" alt="Doble Bacon">
-            <div class="info">
-                <h3>Doble Bacon Cheese</h3>
-                <p>Doble carne, doble queso cheddar y tocino crujiente.</p>
-                <span class="precio">$6.500</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="hamburguesas">
-            <img src="img/veggie-burger.jpg" alt="Veggie Burger">
-            <div class="info">
-                <h3>Veggie Burger</h3>
-                <p>Medallón de lentejas, lechuga, tomate y palta.</p>
-                <span class="precio">$5.800</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="pizzas">
-            <img src="img/pizza-pepperoni.jpg" alt="Pizza Pepperoni">
-            <div class="info">
-                <h3>Pizza Pepperoni</h3>
-                <p>Masa artesanal con salsa de tomate y extra pepperoni.</p>
-                <span class="precio">$8.500</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="pizzas">
-            <img src="img/pizza-bbq.jpg" alt="Pizza Pollo BBQ">
-            <div class="info">
-                <h3>Pizza Pollo BBQ</h3>
-                <p>Salsa barbacoa, pollo, cebolla morada y mozzarella.</p>
-                <span class="precio">$9.000</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="tacos">
-            <img src="img/tacos-pastor.jpg" alt="Tacos al Pastor">
-            <div class="info">
-                <h3>Tacos al Pastor</h3>
-                <p>3 unidades de cerdo adobado con piña y cilantro.</p>
-                <span class="precio">$4.000</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="tacos">
-            <img src="img/quesabirrias.jpg" alt="Quesabirrias">
-            <div class="info">
-                <h3>Quesabirrias</h3>
-                <p>Tacos de carne con queso fundido y consomé.</p>
-                <span class="precio">$5.500</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="sushi">
-            <img src="img/handroll-pollo.jpg" alt="Handroll Pollo">
-            <div class="info">
-                <h3>Handroll de Pollo</h3>
-                <p>Pollo, queso crema y cebollín frito en panko.</p>
-                <span class="precio">$3.500</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="sushi">
-            <img src="img/avocado-roll.jpg" alt="Avocado Roll">
-            <div class="info">
-                <h3>Avocado Roll</h3>
-                <p>Envuelto en palta, relleno de salmón y queso crema.</p>
-                <span class="precio">$4.200</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="bebidas">
-            <img src="img/jugo-fresa.jpg" alt="Jugo de Fresa">
-            <div class="info">
-                <h3>Jugo de Fresa</h3>
-                <p>Natural y refrescante, hecho al momento.</p>
-                <span class="precio">$2.000</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="bebidas">
-            <img src="img/jugo-pina.jpg" alt="Jugo de Piña">
-            <div class="info">
-                <h3>Jugo de Piña</h3>
-                <p>Dulce y tropical, recién exprimido.</p>
-                <span class="precio">$2.000</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="bebidas">
-            <img src="img/jugo-mango.jpg" alt="Jugo de Mango">
-            <div class="info">
-                <h3>Jugo de Mango</h3>
-                <p>Néctar suave de mango maduro.</p>
-                <span class="precio">$2.200</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="bebidas">
-            <img src="img/limonada-menta.jpg" alt="Limonada Menta">
-            <div class="info">
-                <h3>Limonada Menta Jengibre</h3>
-                <p>La especialidad de la casa para la sed.</p>
-                <span class="precio">$2.500</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="bebidas">
-            <img src="img/agua-mineral.jpg" alt="Agua Mineral">
-            <div class="info">
-                <h3>Agua Mineral</h3>
-                <p>Botella personal con o sin gas.</p>
-                <span class="precio">$1.500</span>
-            </div>
-        </div>
-
-        <div class="producto" data-categoria="bebidas">
-            <img src="img/bebida-lata.jpg" alt="Bebida Lata">
-            <div class="info">
-                <h3>Bebida en Lata</h3>
-                <p>Coca-Cola, Fanta o Sprite helada.</p>
-                <span class="precio">$1.800</span>
-            </div>
-        </div>
-
-    </div> <footer class="footer-mega">
+    <footer class="footer-mega">
         <div class="footer-container">
-            
             <div class="footer-col">
                 <h3>Sobre Nosotros</h3>
-                <p>Pasión por la cocina y los mejores ingredientes. Llevamos el sabor auténtico directo a tu mesa con recetas únicas y frescas.</p>
+                <p>Pasión por la cocina y los mejores ingredientes.</p>
                 <div class="redes-sociales">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
-
             <div class="footer-col">
                 <h3>Nuestros Horarios</h3>
                 <ul>
@@ -191,16 +69,13 @@
                     <li><strong>Domingos:</strong> Cerrado</li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h3>Contáctanos</h3>
                 <p><i class="fas fa-map-marker-alt"></i> San donato 3608, Alto Hospicio</p>
                 <p><i class="fas fa-phone"></i> +56 9 1234 5678</p>
                 <p><i class="fas fa-envelope"></i> cosarica@gmail.com</p>
             </div>
-
         </div>
-
         <div class="footer-bottom">
             <p>&copy; 2025 Restaurante Sabor. Todos los derechos reservados.</p>
         </div>
@@ -208,7 +83,8 @@
 
     <div id="modal-producto" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span> <img id="modal-img" src="" alt="Imagen Grande">
+            <span class="close-btn">&times;</span>
+            <img id="modal-img" src="" alt="Imagen Grande">
             <h2 id="modal-titulo">Nombre del Plato</h2>
             <p id="modal-desc">Descripción del plato</p>
             <span id="modal-precio" class="precio-grande">$0.000</span>
@@ -216,6 +92,51 @@
             <button class="btn-pedir-modal">¡Lo quiero!</button>
         </div>
     </div>
+
+    <div class="btn-carrito-flotante" onclick="toggleCarrito()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="contador-carrito">0</span>
+    </div>
+
+    <div id="carrito-sidebar" class="carrito-sidebar">
+        <div class="carrito-header">
+            <h2>Tu Pedido</h2>
+            <span class="close-carrito" onclick="toggleCarrito()">&times;</span>
+        </div>
+
+        <div class="carrito-items" id="lista-carrito">
+            <p class="carrito-vacio">Tu carrito está vacío.</p>
+        </div>
+
+        <div class="carrito-footer">
+            <div class="cupon-box">
+                <input type="text" id="input-cupon" placeholder="Código (ej: SABOR10)">
+                <button onclick="aplicarCupon()">Aplicar</button>
+            </div>
+            <p id="msg-cupon"></p>
+
+            <div class="desglose-total">
+                <div class="fila-total">
+                    <span>Subtotal:</span>
+                    <span id="carrito-subtotal">$0</span>
+                </div>
+                <div class="fila-total descuento" id="fila-descuento" style="display: none;">
+                    <span>Descuento:</span>
+                    <span id="carrito-descuento">-$0</span>
+                </div>
+                <div class="fila-total total-final">
+                    <span>Total:</span>
+                    <span id="carrito-total">$0</span>
+                </div>
+            </div>
+
+            <button class="btn-checkout" onclick="finalizarPedido()">
+                Enviar Pedido <i class="fab fa-whatsapp"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
 
     <script src="script.js"></script>
 
