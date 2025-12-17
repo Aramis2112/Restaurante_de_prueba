@@ -1,15 +1,3 @@
-git add . para meter las cosas y prepararlas para el envio
-
-git commit -m "Corregir colores de interfaz" esto es la etiqueta que se le da a la caja
-
-git push envia todo al git 
-
 git add .
-
-git commit -m "Corregir colores de interfaz"
-
-git push
-
-git add .
-git commit -m "actualizar icono favicon a la pagina"
+git commit -m "grandes cambios de diseño"
 git push

@@ -1,413 +1,469 @@
+/* === VARIABLES GLOBALES E INTELIGENTES === */
+:root {
+    /* Tu color de marca (Turquesa) */
+    --color-acento: #428f9c;          /* Define el color principal turquesa */
+    --color-acento-hover: #4da3b3;    /* Define un tono más claro para cuando el mouse pasa por encima */
+
+    /* Colores Modo Claro (Por defecto) */
+    --bg-body: #f4f4f4;               /* Fondo gris muy claro para el cuerpo de la página */
+    --bg-card: #ffffff;               /* Fondo blanco para las tarjetas de productos */
+    --bg-inputs: #ffffff;             /* Fondo blanco para el buscador */
+    --text-main: #333333;             /* Color de texto principal (gris oscuro) */
+    --text-sec: #666666;              /* Color de texto secundario (gris medio) */
+    --border-color: #eeeeee;          /* Color para bordes sutiles */
+    --shadow-card: 0 5px 15px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad a las tarjetas */
+}
+
+/* Colores Modo Oscuro (Se activan con JS) */
+body.dark-mode {
+    --bg-body: #121212;      /* Cambia el fondo a negro casi puro */
+    --bg-card: #1e1e1e;      /* Cambia las tarjetas a gris oscuro */
+    --bg-inputs: #2a2a2a;    /* Cambia el buscador a gris oscuro */
+    --text-main: #e0e0e0;    /* Cambia el texto principal a blanco suave */
+    --text-sec: #aaaaaa;     /* Cambia el texto secundario a gris claro */
+    --border-color: #333333; /* Oscurece los bordes */
+    --shadow-card: 0 5px 15px rgba(0,0,0,0.5); /* Hace la sombra más intensa para que se note en lo oscuro */
+}
+
 /* === REINICIO BÁSICO === */
 * {
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;    /* Hace que el desplazamiento (scroll) sea suave al ir a secciones */
+    margin: 0;                  /* Elimina los márgenes por defecto de todos los elementos */
+    padding: 0;                 /* Elimina el relleno interno por defecto */
+    box-sizing: border-box;     /* Asegura que el padding no aumente el tamaño total de los elementos */
+    font-family: 'Poppins', sans-serif; /* Aplica la tipografía Poppins a todo el sitio */
 }
 
 body {
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--bg-body); /* Aplica el color de fondo definido en las variables */
+    color: var(--text-main);          /* Aplica el color de texto principal */
+    transition: background-color 0.3s, color 0.3s; /* Suaviza el cambio de colores al cambiar entre modo claro/oscuro */
+}
+
+/* Regla para que TODOS los títulos cambien de color en modo oscuro */
+h1, h2, h3, h4, h5 {
+    color: var(--text-main);    /* Asegura que los títulos usen la variable de color principal */
+    transition: color 0.3s;     /* Suaviza el cambio de color en los títulos */
 }
 
 header {
-    background-color: #428f9c;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: var(--color-acento); /* Fondo turquesa para el encabezado */
+    color: white;                          /* Texto blanco dentro del encabezado */
+    padding: 20px;                         /* Espacio interno de 20px alrededor del contenido */
+    text-align: center;                    /* Centra el texto u logo del header */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Añade una pequeña sombra inferior */
+}
+
+/* === BOTÓN FLOTANTE MODO OSCURO === */
+.btn-tema {
+    position: fixed;            /* Fija el botón en la pantalla, no se mueve al hacer scroll */
+    top: 20px;                  /* Distancia desde la parte superior */
+    right: 20px;                /* Distancia desde la derecha */
+    z-index: 1001;              /* Asegura que esté por encima de casi todo (capa alta) */
+    background-color: var(--bg-card); /* Usa el fondo de tarjeta (blanco o gris oscuro) */
+    color: var(--text-main);    /* Usa el color de texto principal para el icono */
+    border: none;               /* Quita el borde por defecto */
+    width: 45px;                /* Ancho del botón */
+    height: 45px;               /* Alto del botón */
+    border-radius: 50%;         /* Lo hace perfectamente redondo */
+    font-size: 1.2rem;          /* Tamaño del icono dentro del botón */
+    cursor: pointer;            /* Cambia el cursor a "mano" al pasar por encima */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Sombra para que flote visualmente */
+    transition: 0.3s;           /* Suaviza las animaciones del botón */
+    display: flex;              /* Usa Flexbox para centrar el icono */
+    justify-content: center;    /* Centra horizontalmente */
+    align-items: center;        /* Centra verticalmente */
+}
+
+.btn-tema:hover {
+    transform: scale(1.1);          /* Aumenta el tamaño un 10% al pasar el mouse */
+    color: var(--color-acento);     /* Cambia el color del icono a turquesa */
 }
 
 /* === CONTROLES (Buscador y Filtros) === */
 .controles {
-    text-align: center;
-    padding: 20px;
-    background: white;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;             /* Centra todo el contenido (buscador y botones) */
+    padding: 20px;                  /* Espacio interno */
+    background: var(--bg-card);     /* Fondo adaptable al tema (claro u oscuro) */
+    margin-bottom: 20px;            /* Espacio debajo de la sección de controles */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra muy sutil */
+    transition: background-color 0.3s; /* Transición suave si cambia el fondo */
 }
 
 #buscador {
-    width: 100%;
-    max-width: 500px;
-    padding: 12px 20px;
-    border: 2px solid #eee;
-    border-radius: 30px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    transition: 0.3s;
+    width: 100%;                    /* Ocupa el ancho disponible */
+    max-width: 500px;               /* Pero no pasa de 500px de ancho */
+    padding: 12px 20px;             /* Relleno interno para que el texto no pegue al borde */
+    border: 2px solid var(--border-color); /* Borde de 2px con color variable */
+    background-color: var(--bg-inputs);    /* Fondo del input variable */
+    color: var(--text-main);        /* Color del texto que se escribe */
+    border-radius: 30px;            /* Bordes muy redondeados */
+    font-size: 16px;                /* Tamaño de letra legible */
+    margin-bottom: 20px;            /* Espacio debajo del buscador */
+    transition: 0.3s;               /* Suaviza los cambios de estado */
 }
 
 #buscador:focus {
-    border-color: #428f9c;
-    outline: none;
+    border-color: var(--color-acento); /* Pinta el borde de turquesa al hacer clic dentro */
+    outline: none;                     /* Quita el borde azul por defecto del navegador */
 }
 
 .filtros {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    display: flex;              /* Pone los botones uno al lado del otro */
+    justify-content: center;    /* Los centra en la pantalla */
+    gap: 10px;                  /* Espacio de 10px entre cada botón */
+    flex-wrap: wrap;            /* Permite que bajen de línea si no caben en móviles */
 }
 
 .btn-filtro {
-    padding: 8px 16px;
-    border: none;
-    background-color: #f0f0f0;
-    color: #555;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    -webkit-font-smoothing: antialiased;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    will-change: transform;
+    padding: 8px 16px;          /* Tamaño del botón (relleno) */
+    border: none;               /* Sin bordes */
+    background-color: var(--border-color); /* Fondo gris claro adaptable */
+    color: var(--text-sec);     /* Texto gris medio */
+    border-radius: 20px;        /* Bordes redondeados estilo "pastilla" */
+    cursor: pointer;            /* Cursor de mano */
+    transition: all 0.3s ease;  /* Animación suave para todo */
+    font-weight: 500;           /* Grosor de letra medio */
 }
 
 .btn-filtro:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.1);
-    z-index: 10;
+    background-color: #ccc;     /* Oscurece un poco el fondo al pasar el mouse */
+    transform: scale(1.1);      /* Crece un poco */
+    z-index: 10;                /* Se pone por encima de otros si se solapan */
 }
 
 .btn-filtro.active {
-    background-color: #428f9c;
-    color: white;
+    background-color: var(--color-acento); /* Fondo turquesa si está activo */
+    color: white;                          /* Texto blanco si está activo */
 }
 
 /* === MENÚ GRID (Tarjeta de Producto) === */
 .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 100vh;
-    align-content: start;
+    display: grid;              /* Activa el sistema de rejilla (Grid) */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Crea columnas automáticas de mínimo 250px */
+    gap: 20px;                  /* Espacio entre las tarjetas */
+    padding: 20px;              /* Espacio interno del contenedor */
+    max-width: 1200px;          /* Ancho máximo del contenedor de productos */
+    margin: 0 auto;             /* Centra el contenedor en la pantalla */
+    min-height: 100vh;          /* Asegura que ocupe al menos el alto de la pantalla */
+    align-content: start;       /* Alinea el contenido al inicio */
 }
 
 .producto {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
-    display: block; /* Necesario para el JS */
-    cursor: pointer;
+    background-color: var(--bg-card); /* Fondo de la tarjeta adaptable */
+    border-radius: 15px;              /* Bordes redondeados de la tarjeta */
+    overflow: hidden;                 /* Oculta lo que se salga de los bordes redondeados */
+    box-shadow: var(--shadow-card);   /* Sombra definida en variables */
+    transition: transform 0.3s, background-color 0.3s; /* Animación de movimiento y color */
+    display: block;                   /* Comportamiento de bloque */
+    cursor: pointer;                  /* Indica que es clicable */
 }
 
-.producto:hover {
-    transform: translateY(-5px);
+/* CORRECCIÓN DEL HOVER CON ANIMACIÓN ACTIVA */
+.producto.active:hover {
+    transform: translateY(-10px);        /* Mueve la tarjeta hacia arriba al pasar el mouse */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Aumenta la sombra para efecto de elevación */
 }
 
 .producto img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+    width: 100%;                /* La imagen ocupa todo el ancho de la tarjeta */
+    height: 180px;              /* Altura fija de 180px */
+    object-fit: cover;          /* Recorta la imagen para llenar el espacio sin deformarse */
 }
 
 .producto .info {
-    padding: 15px;
+    padding: 15px;              /* Espacio interno para el texto dentro de la tarjeta */
 }
 
 .producto h3 {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    color: #222;
+    margin-bottom: 10px;        /* Espacio debajo del título del producto */
+    font-size: 1.1rem;          /* Tamaño de letra ligeramente más grande */
+    color: var(--text-main);    /* Color del título adaptable */
 }
 
 .producto p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 15px;
+    font-size: 0.9rem;          /* Tamaño de letra pequeño para la descripción */
+    color: var(--text-sec);     /* Color gris para descripción */
+    margin-bottom: 15px;        /* Espacio debajo de la descripción */
 }
 
 .precio {
-    display: inline-block;
-    background-color: #428f9c;
-    color: white;
-    padding: 5px 12px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 0.95rem;
+    display: inline-block;          /* Se comporta como bloque pero en línea */
+    background-color: var(--color-acento); /* Fondo de la etiqueta de precio */
+    color: white;                   /* Texto blanco */
+    padding: 5px 12px;              /* Relleno de la etiqueta */
+    border-radius: 10px;            /* Bordes redondeados */
+    font-weight: bold;              /* Letra negrita */
+    font-size: 0.95rem;             /* Tamaño de letra */
 }
 
 /* Clase utilitaria para ocultar elementos */
 .hide {
-    display: none !important;
-}
-
-footer {
-    text-align: center;
-    padding: 30px;
-    color: #888;
-    font-size: 0.8rem;
+    display: none !important;   /* Fuerza a ocultar el elemento (usado en filtros) */
 }
 
 /* Estilo del Hero Section */
 .hero {
-    height: 100vh; /* Ocupa el 60% de la altura de la pantalla */
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-hero.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
+    height: 100vh;              /* Ocupa el 100% de la altura de la ventana */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondo-hero.jpg'); /* Imagen de fondo con capa oscura encima */
+    background-size: cover;     /* La imagen cubre todo el fondo */
+    background-position: center;/* La imagen se centra */
+    display: flex;              /* Usa flexbox para alinear contenido */
+    align-items: center;        /* Centra verticalmente */
+    justify-content: center;    /* Centra horizontalmente */
+    text-align: center;         /* Alinea el texto al centro */
+    color: white;               /* Color de texto blanco */
+    margin-bottom: 30px;        /* Espacio debajo del banner */
 }
 
 .contenido-hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 3.5rem;          /* Título muy grande */
+    margin-bottom: 10px;        /* Espacio debajo del título */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra negra al texto para leerse mejor */
+    color: white;               /* Forzamos blanco en el banner siempre */
 }
 
 .contenido-hero p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 1.2rem;          /* Subtítulo grande */
+    margin-bottom: 20px;        /* Espacio debajo del subtítulo */
 }
 
 .btn-llamada {
-    display: inline-block;
-    padding: 10px 30px;
-    background-color: #428f9c;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: transform 0.3s;
+    display: inline-block;      /* Comportamiento de botón */
+    padding: 10px 30px;         /* Relleno grande */
+    background-color: var(--color-acento); /* Fondo turquesa */
+    color: white;               /* Texto blanco */
+    text-decoration: none;      /* Quita el subrayado de enlace */
+    border-radius: 50px;        /* Botón completamente redondo en bordes */
+    font-weight: bold;          /* Letra negrita */
+    transition: transform 0.3s; /* Animación suave */
 }
 
 .btn-llamada:hover {
-    transform: scale(1.1);
-    background-color: #4da3b3;
+    transform: scale(1.1);              /* Crece al pasar el mouse */
+    background-color: var(--color-acento-hover); /* Cambia a turquesa claro */
 }
 
 .btn-wsp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #25d366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 100; /* Para que siempre esté encima de todo */
-    transition: transform 0.3s;
+    position: fixed;            /* Fijo en la pantalla */
+    bottom: 20px;               /* Abajo */
+    right: 20px;                /* A la derecha */
+    width: 60px;                /* Ancho del botón */
+    height: 60px;               /* Alto del botón */
+    background-color: #25d366;  /* Color oficial de WhatsApp */
+    border-radius: 50%;         /* Redondo */
+    display: flex;              /* Para centrar el icono */
+    align-items: center;        /* Centra verticalmente */
+    justify-content: center;    /* Centra horizontalmente */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra flotante */
+    z-index: 100;               /* Capa superior */
+    transition: transform 0.3s; /* Animación suave */
 }
 
 .btn-wsp:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Se eleva un poco al pasar el mouse */
 }
 
 .btn-wsp img {
-    width: 35px;
-    height: 35px;
+    width: 35px;                /* Tamaño del icono de WhatsApp */
+    height: 35px;               /* Tamaño del icono de WhatsApp */
 }
 
 /* === ESTILOS DEL MEGA FOOTER === */
+/* El footer lo mantenemos oscuro siempre por diseño */
 .footer-mega {
-    background-color: #222; /* Fondo oscuro */
-    color: #eee;            /* Texto gris claro */
-    padding-top: 60px;
-    margin-top: 50px;       /* Separación del menú */
+    background-color: #222;     /* Fondo gris muy oscuro casi negro */
+    color: #eee;                /* Texto gris muy claro */
+    padding-top: 60px;          /* Relleno superior grande */
+    margin-top: 50px;           /* Margen superior para separarlo del contenido */
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    /* Esto crea columnas automáticas que se ajustan al celular y PC */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    padding: 0 20px 40px 20px;
+    max-width: 1200px;          /* Ancho máximo */
+    margin: 0 auto;             /* Centrado */
+    display: grid;              /* Grid para las columnas */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas responsivas */
+    gap: 40px;                  /* Espacio entre columnas */
+    padding: 0 20px 40px 20px;  /* Relleno interno */
 }
 
 .footer-col h3 {
-    color: #428f9c; /* Tu color de marca */
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    position: relative;
+    color: var(--color-acento); /* Títulos en color turquesa */
+    font-size: 1.2rem;          /* Tamaño de letra */
+    margin-bottom: 20px;        /* Espacio debajo del título */
+    position: relative;         /* Para posicionar la línea decorativa */
 }
 
-/* Pequeña línea decorativa bajo el título */
 .footer-col h3::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 40px;
-    height: 3px;
-    background-color: #428f9c;
+    content: '';                /* Crea un elemento vacío para la línea */
+    position: absolute;         /* Posición absoluta respecto al h3 */
+    left: 0;                    /* Pegado a la izquierda */
+    bottom: -8px;               /* Un poco más abajo del texto */
+    width: 40px;                /* Ancho de la línea */
+    height: 3px;                /* Grosor de la línea */
+    background-color: var(--color-acento); /* Color de la línea decorativa */
 }
 
 .footer-col p {
-    color: #bbb;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    font-size: 0.95rem;
+    color: #bbb;                /* Color de texto gris suave */
+    line-height: 1.6;           /* Altura de línea para leer mejor */
+    margin-bottom: 15px;        /* Espacio entre párrafos */
+    font-size: 0.95rem;         /* Tamaño de letra */
 }
 
 .footer-col ul {
-    list-style: none;
-    padding: 0;
+    list-style: none;           /* Quita los puntos de la lista */
+    padding: 0;                 /* Quita el relleno izquierdo */
 }
 
 .footer-col ul li {
-    margin-bottom: 10px;
-    color: #bbb;
+    margin-bottom: 10px;        /* Espacio entre elementos de lista */
+    color: #bbb;                /* Color gris */
 }
 
-/* Iconos de redes sociales */
 .redes-sociales a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: #333;
-    color: white;
-    border-radius: 50%;
-    margin-right: 10px;
-    text-decoration: none;
-    transition: 0.3s;
+    display: inline-flex;       /* Botones en línea */
+    justify-content: center;    /* Centra icono */
+    align-items: center;        /* Centra icono */
+    width: 40px;                /* Tamaño botón */
+    height: 40px;               /* Tamaño botón */
+    background-color: #333;     /* Fondo gris oscuro */
+    color: white;               /* Icono blanco */
+    border-radius: 50%;         /* Redondo */
+    margin-right: 10px;         /* Espacio a la derecha */
+    text-decoration: none;      /* Sin subrayado */
+    transition: 0.3s;           /* Animación suave */
 }
 
 .redes-sociales a:hover {
-    background-color: #428f9c;
-    transform: translateY(-3px);
+    background-color: var(--color-acento); /* Fondo turquesa al pasar mouse */
+    transform: translateY(-3px);           /* Pequeño salto hacia arriba */
 }
 
-/* Barra inferior */
 .footer-bottom {
-    background-color: #111; /* Un poco más oscuro */
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid #333;
-    font-size: 0.8rem;
-    color: #888;
+    background-color: #111;     /* Fondo más oscuro para la parte final */
+    text-align: center;         /* Texto centrado */
+    padding: 20px;              /* Relleno */
+    border-top: 1px solid #333; /* Línea separadora superior */
+    font-size: 0.8rem;          /* Letra pequeña */
+    color: #888;                /* Color gris oscuro */
 }
 
 /* === ANIMACIONES DE ENTRADA (Scroll Reveal) === */
-
-/* Estado inicial: Invisible y desplazado hacia abajo */
 .reveal {
-    opacity: 0;
-    transform: translateY(50px); 
-    transition: all 0.8s ease-out; /* Tarda 0.8 segundos en subir suavemente */
+    opacity: 0;                 /* Invisible inicialmente */
+    transform: translateY(50px);/* Desplazado 50px hacia abajo */
+    transition: all 0.8s ease-out; /* La animación de aparición dura 0.8s */
 }
 
-/* Estado final: Visible y en su sitio (JS agregará esta clase) */
 .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;                 /* Se vuelve visible */
+    transform: translateY(0);   /* Vuelve a su posición original */
 }
 
 /* === ESTILOS DE LA VENTANA MODAL === */
 .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    z-index: 1000; /* Encima de todo */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    display: none;              /* Oculto por defecto */
+    position: fixed;            /* Fijo sobre toda la pantalla */
+    z-index: 1000;              /* Capa muy alta (debajo del botón de tema) */
+    left: 0;                    /* Pegado a la izquierda */
+    top: 0;                     /* Pegado arriba */
+    width: 100%;                /* Ancho total */
+    height: 100%;               /* Alto total */
     background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px); /* Efecto borroso elegante en el fondo */
+    justify-content: center;    /* Centra la ventana modal horizontalmente */
+    align-items: center;        /* Centra la ventana modal verticalmente */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo detrás del modal */
 }
 
 .modal-content {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.85)), url('img/fondo-modal.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #f0f0f0;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    box-shadow: none;
-    animation: zoomIn 0.3s ease; /* Animación de entrada */
-    border: 1px solid rgba(255,255,255,0.1)
+    background-image: url('img/fondo-modal.jpg'); /* Imagen de fondo para el modal */
+    background-size: cover;     /* Cubre todo el fondo */
+    background-position: center;/* Centra la imagen */
+    color: #f0f0f0;             /* Texto claro */
+    padding: 30px;              /* Relleno interno */
+    border-radius: 20px;        /* Bordes redondeados */
+    text-align: center;         /* Texto centrado */
+    width: 90%;                 /* Ancho del 90% en móviles */
+    max-width: 500px;           /* Ancho máximo en PC */
+    position: relative;         /* Posición relativa para ubicar la X de cerrar */
+    box-shadow: none;           /* Sin sombra extra */
+    animation: zoomIn 0.3s ease;/* Animación de entrada "zoom" */
+    border: 1px solid rgba(255,255,255,0.1); /* Borde sutil */
 }
-/* Aseguramos que los títulos y textos dentro del modal sean claros */
+
+/* Texto con sombra para leerse sobre la imagen */
+.modal-content h2, 
+.modal-content p, 
+.modal-content .precio-grande {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Sombra negra fuerte al texto */
+}
+
 .modal-content h2 {
-    color: white;
-    margin-top: 10px;
+    color: white;               /* Título blanco */
+    margin-top: 10px;           /* Margen superior */
 }
 
 .modal-content p {
-    color: #ccc; /* Gris clarito para la descripción */
+    color: #eee;                /* Párrafo gris claro */
 }
 
-/* Animación de Zoom */
 @keyframes zoomIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from { transform: scale(0.7); opacity: 0; } /* Empieza pequeño e invisible */
+    to { transform: scale(1); opacity: 1; }     /* Termina tamaño normal y visible */
 }
 
 .modal-content img {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 20px;
+    width: 100%;                /* Imagen del producto al 100% del ancho disponible */
+    max-height: 300px;          /* Altura máxima */
+    object-fit: cover;          /* Recorte */
+    border-radius: 15px;        /* Bordes redondeados */
+    margin-bottom: 20px;        /* Espacio debajo de la imagen */
 }
 
+/* === ESTILO RESTAURADO DEL BOTÓN CERRAR (X) === */
 .close-btn {
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-    transition: 0.2s;
+    position: absolute;         /* Posición absoluta respecto al modal */
+    top: 0px;                   /* Pegado al borde superior (ajustado según original) */
+    right: 10px;                /* Pegado al borde derecho */
+    font-size: 25px;            /* Tamaño grande de la X */
+    font-weight: bold;          /* Negrita */
+    /* Lo ponemos blanco con sombra para que resalte sobre la imagen de fondo */
+    color: #ffffff;             /* Color blanco */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Sombra para contraste */
+    cursor: pointer;            /* Cursor de mano */
+    transition: 0.2s;           /* Animación rápida */
+    z-index: 10;                /* Capa superior */
+    /* Quitamos todas las propiedades de "botón redondo" para dejar solo la X */
 }
 
 .close-btn:hover {
-    color: #428f9c;
+    color: var(--color-acento); /* Solo cambia el color a turquesa al pasar el mouse */
 }
 
 .precio-grande {
-    font-size: 1.5rem;
-    color: #428f9c;
-    font-weight: bold;
-    display: block;
-    margin: 15px 0;
+    font-size: 1.5rem;          /* Precio en tamaño grande */
+    color: var(--color-acento); /* Color turquesa */
+    font-weight: bold;          /* Negrita */
+    display: block;             /* En bloque propio */
+    margin: 15px 0;             /* Márgenes verticales */
+    /* Borde negro a las letras para que resalte mucho */
+    -webkit-text-stroke: 0.5px black; /* Delineado negro al texto */
 }
 
 .btn-pedir-modal {
-    padding: 12px 30px;
-    background-color: #428f9c; /* Verde WhatsApp */
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s;
+    padding: 12px 30px;         /* Relleno del botón */
+    background-color: var(--color-acento); /* Fondo turquesa */
+    color: white;               /* Texto blanco */
+    border: none;               /* Sin borde */
+    border-radius: 50px;        /* Redondo */
+    font-size: 1rem;            /* Tamaño de letra */
+    font-weight: bold;          /* Negrita */
+    cursor: pointer;            /* Cursor de mano */
+    transition: transform 0.2s; /* Animación rápida */
 }
 
 .btn-pedir-modal:hover {
-    transform: scale(1.05);
-}
-
-/* === CORRECCIÓN DEL HOVER === */
-/* Forzamos la elevación cuando el producto ya apareció (tiene la clase .active) */
-.producto.active:hover {
-    transform: translateY(-10px); /* Vuelve a subir 10px */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Recupera la sombra bonita */
+    transform: scale(1.05);     /* Crece un poco al pasar mouse */
+    background-color: var(--color-acento-hover); /* Cambia color */
 }

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/favicon.png" type="image/png">
-    <title>Menú Digital Restaurante</title>
-    <link rel="stylesheet" href="style.css">
+<html lang="es"> <head>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" href="img/favicon.png" type="image/png"> <title>Menú Digital Restaurante</title> <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
+    <button id="dark-mode-toggle" class="btn-tema">
+        <i class="fas fa-moon"></i> </button>
+    
     <header class="hero">
-    <div class="contenido-hero">
-        <h1>Cosa Rica</h1>
-        <p>Las mejores hamburguesas, pizzas y tacos de la ciudad.</p>
-        <a href="#inicio-menu" class="btn-llamada">Ver Menú</a>
-    </div>
-</header>
+        <div class="contenido-hero">
+            <h1>Cosa Rica</h1>
+            <p>Las mejores hamburguesas, pizzas y tacos de la ciudad.</p>
+            <a href="#inicio-menu" class="btn-llamada">Ver Menú</a>
+        </div>
+    </header>
 
     <section class="controles" id="inicio-menu">
         <input type="text" id="buscador" placeholder="🔍 ¿Qué se te antoja hoy? (ej. Hamburguesa, Jugo...)">
@@ -42,6 +43,7 @@
                 <span class="precio">$5.000</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="hamburguesas">
             <img src="img/doble-bacon.jpg" alt="Doble Bacon">
             <div class="info">
@@ -50,6 +52,7 @@
                 <span class="precio">$6.500</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="hamburguesas">
             <img src="img/veggie-burger.jpg" alt="Veggie Burger">
             <div class="info">
@@ -67,6 +70,7 @@
                 <span class="precio">$8.500</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="pizzas">
             <img src="img/pizza-bbq.jpg" alt="Pizza Pollo BBQ">
             <div class="info">
@@ -84,6 +88,7 @@
                 <span class="precio">$4.000</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="tacos">
             <img src="img/quesabirrias.jpg" alt="Quesabirrias">
             <div class="info">
@@ -101,6 +106,7 @@
                 <span class="precio">$3.500</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="sushi">
             <img src="img/avocado-roll.jpg" alt="Avocado Roll">
             <div class="info">
@@ -118,6 +124,7 @@
                 <span class="precio">$2.000</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="bebidas">
             <img src="img/jugo-pina.jpg" alt="Jugo de Piña">
             <div class="info">
@@ -126,6 +133,7 @@
                 <span class="precio">$2.000</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="bebidas">
             <img src="img/jugo-mango.jpg" alt="Jugo de Mango">
             <div class="info">
@@ -134,6 +142,7 @@
                 <span class="precio">$2.200</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="bebidas">
             <img src="img/limonada-menta.jpg" alt="Limonada Menta">
             <div class="info">
@@ -142,6 +151,7 @@
                 <span class="precio">$2.500</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="bebidas">
             <img src="img/agua-mineral.jpg" alt="Agua Mineral">
             <div class="info">
@@ -150,6 +160,7 @@
                 <span class="precio">$1.500</span>
             </div>
         </div>
+
         <div class="producto" data-categoria="bebidas">
             <img src="img/bebida-lata.jpg" alt="Bebida Lata">
             <div class="info">
@@ -159,58 +170,58 @@
             </div>
         </div>
 
-    </div>
-
-    <footer class="footer-mega">
-    <div class="footer-container">
-        
-        <div class="footer-col">
-            <h3>Sobre Nosotros</h3>
-            <p>Pasión por la cocina y los mejores ingredientes. Llevamos el sabor auténtico directo a tu mesa con recetas únicas y frescas.</p>
-            <div class="redes-sociales">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div> <footer class="footer-mega">
+        <div class="footer-container">
+            
+            <div class="footer-col">
+                <h3>Sobre Nosotros</h3>
+                <p>Pasión por la cocina y los mejores ingredientes. Llevamos el sabor auténtico directo a tu mesa con recetas únicas y frescas.</p>
+                <div class="redes-sociales">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
             </div>
+
+            <div class="footer-col">
+                <h3>Nuestros Horarios</h3>
+                <ul>
+                    <li><strong>Lun - Vie:</strong> 12:00 pm - 10:00 pm</li>
+                    <li><strong>Sábados:</strong> 1:00 pm - 11:00 pm</li>
+                    <li><strong>Domingos:</strong> Cerrado</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contáctanos</h3>
+                <p><i class="fas fa-map-marker-alt"></i> San donato 3608, Alto Hospicio</p>
+                <p><i class="fas fa-phone"></i> +56 9 1234 5678</p>
+                <p><i class="fas fa-envelope"></i> cosarica@gmail.com</p>
+            </div>
+
         </div>
 
-        <div class="footer-col">
-            <h3>Nuestros Horarios</h3>
-            <ul>
-                <li><strong>Lun - Vie:</strong> 12:00 pm - 10:00 pm</li>
-                <li><strong>Sábados:</strong> 1:00 pm - 11:00 pm</li>
-                <li><strong>Domingos:</strong> Cerrado</li>
-            </ul>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Restaurante Sabor. Todos los derechos reservados.</p>
         </div>
+    </footer>
 
-        <div class="footer-col">
-            <h3>Contáctanos</h3>
-            <p><i class="fas fa-map-marker-alt"></i> San donato 3608, Alto Hospicio</p>
-            <p><i class="fas fa-phone"></i> +56 9 1234 5678</p>
-            <p><i class="fas fa-envelope"></i> cosarica@gmail.com</p>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p>&copy; 2025 Restaurante Sabor. Todos los derechos reservados.</p>
-    </div>
-</footer>
     <div id="modal-producto" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <img id="modal-img" src="" alt="Imagen Grande">
-        <h2 id="modal-titulo">Nombre del Plato</h2>
-        <p id="modal-desc">Descripción del plato</p>
-        <span id="modal-precio" class="precio-grande">$0.000</span>
-        <br><br>
-        <button class="btn-pedir-modal">¡Lo quiero!</button>
+        <div class="modal-content">
+            <span class="close-btn">&times;</span> <img id="modal-img" src="" alt="Imagen Grande">
+            <h2 id="modal-titulo">Nombre del Plato</h2>
+            <p id="modal-desc">Descripción del plato</p>
+            <span id="modal-precio" class="precio-grande">$0.000</span>
+            <br><br>
+            <button class="btn-pedir-modal">¡Lo quiero!</button>
+        </div>
     </div>
-</div>
+
     <script src="script.js"></script>
 
     <a href="https://wa.me/56912345678" class="btn-wsp" target="_blank">
-    <img src="img/wsp.png" alt="Pedir por WhatsApp">
-</a>
+        <img src="img/wsp.png" alt="Pedir por WhatsApp">
+    </a>
+
 </body>
 </html>
